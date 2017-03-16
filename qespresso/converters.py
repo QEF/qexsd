@@ -10,7 +10,7 @@
 """
 Data format converters for Quantum Espresso
 """
-
+import copy
 import logging
 import re
 import os.path
@@ -651,9 +651,26 @@ class NebInputConverter(RawInputConverter):
     Convert to/from Fortran input for Phonon.
     """
     NEB_TEMPLATE_MAP = {
+        'restartMode' :"path[restart_mode]",
+        'stringMethod':"path[string_method]",
+        'pathNstep'   :"path[nstep_path]",
+        'numOfImages' :"path[num_of_images]",
+        'optimizationScheme':"path[opt_scheme]",
+        'climbingImage' :["path[CI_scheme]",
+                          ("CLIMBING_IMAGES", cards.get_climbing_images)
+                          ],
+        'useMassesFlag' : "path[use_masses]",
+        'useFreezingFlag' : "path[use_freezing]",
+        'constantBiasFlag': "path[lfcpopt]",
+        'targetFermiEnergy' : "path[fcp_mu]",
+        'totChargeFirst' : "path[fcp_tot_charge_first]",
+        'totChargeLast'  : "path[fcp_tot_charge_last]",
+        'climbingImageIndex' :("CLIMBING_IMAGES",cards.get_climbing_images)
     }
 
     def __init__(self):
+        NEB_TEMPLATE_MAP = copy.copy(PwInputConverter.PW_TEMPLATE_MAP)
+        NEB_TEMPLATE_MAP.update(self.NEB_TEMPLATE_MAP)
         super(NebInputConverter, self).__init__(
             *conversion_maps_builder(self.NEB_TEMPLATE_MAP),
             input_namelists=tuple(),
