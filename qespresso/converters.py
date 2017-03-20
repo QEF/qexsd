@@ -650,29 +650,38 @@ class NebInputConverter(RawInputConverter):
     """
     Convert to/from Fortran input for Phonon.
     """
-    NEB_TEMPLATE_MAP = {
-        'restartMode' :"path[restart_mode]",
-        'stringMethod':"path[string_method]",
-        'pathNstep'   :"path[nstep_path]",
-        'numOfImages' :"path[num_of_images]",
-        'optimizationScheme':"path[opt_scheme]",
-        'climbingImage' :["path[CI_scheme]",
+    NEB_TEMPLATE_MAP = { 'path' : {
+        'restartMode' :"PATH[restart_mode]",
+        'stringMethod':"PATH[string_method]",
+        'pathNstep'   :"PATH[nstep_path]",
+        'numOfImages' :"PATH[num_of_images]",
+        'optimizationScheme':"PATH[opt_scheme]",
+        'climbingImage' :["PATH[CI_scheme]",
                           ("CLIMBING_IMAGES", cards.get_climbing_images)
                           ],
-        'useMassesFlag' : "path[use_masses]",
-        'useFreezingFlag' : "path[use_freezing]",
-        'constantBiasFlag': "path[lfcpopt]",
-        'targetFermiEnergy' : "path[fcp_mu]",
-        'totChargeFirst' : "path[fcp_tot_charge_first]",
-        'totChargeLast'  : "path[fcp_tot_charge_last]",
+        'useMassesFlag' : "PATH[use_masses]",
+        'useFreezingFlag' : "PATH[use_freezing]",
+        'constantBiasFlag': "PATH[lfcpopt]",
+        'targetFermiEnergy' : "PATH[fcp_mu]",
+        'totChargeFirst' : "PATH[fcp_tot_charge_first]",
+        'totChargeLast'  : "PATH[fcp_tot_charge_last]",
         'climbingImageIndex' :("CLIMBING_IMAGES",cards.get_climbing_images)
-    }
+    } }
 
-    def __init__(self):
-        NEB_TEMPLATE_MAP = copy.copy(PwInputConverter.PW_TEMPLATE_MAP)
-        NEB_TEMPLATE_MAP.update(self.NEB_TEMPLATE_MAP)
+    def __init__(self,**kwargs):
+        ENGINE_TEMPLATE_MAP = copy.deepcopy(PwInputConverter.PW_TEMPLATE_MAP)
+        ENGINE_TEMPLATE_MAP['atomic_structure']={
+            'nat': "SYSTEM[nat]",
+            '_text':[("CELL_PARAMETERS", cards.get_neb_cell_parameters_card, None),
+                     ("ATOMIC_POSITIONS", cards.get_neb_images_positions_card,None)
+                     ],
+            'atomic_positions': ('ATOMIC_FORCES', cards.get_atomic_forces_card,None)
+        }
+        ENGINE_TEMPLATE_MAP['_text'] = ("ATOMIC_POSITIONS",cards.get_neb_images_positions_card,None )
+        self.NEB_TEMPLATE_MAP.update({'engine': ENGINE_TEMPLATE_MAP} )
         super(NebInputConverter, self).__init__(
             *conversion_maps_builder(self.NEB_TEMPLATE_MAP),
-            input_namelists=tuple(),
-            input_cards=tuple()
+            input_namelists=('PATH','CONTROL','SYSTEM','ELECTRONS','IONS','CELL'),
+            input_cards=('CLIMBING_IMAGES', 'ATOMIC_POSITIONS', 'CELL_PARAMETERS', 'K_POINTS',
+                         'ATOMIC_SPECIES','ATOMIC_FORCES')
         )
