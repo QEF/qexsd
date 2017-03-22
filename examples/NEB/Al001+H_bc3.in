@@ -25,12 +25,11 @@ BEGIN_ENGINE_INPUT
  forc_conv_thr=1e-05
  iprint=100
  max_seconds=10000000
- nstep=250
  outdir='/scratch/pdelugas/espresso/tempdir/'
- prefix='Al001+H_pbc'
+ prefix='Al00+H_bc3'
  pseudo_dir='/scratch/pdelugas/espresso/pseudo/'
  restart_mode='from_scratch'
- title='Al001+H_pbc'
+ title='Al001+H_bc3'
  tprnfor=.true.
  tstress=.false.
  verbosity='low'
@@ -60,8 +59,8 @@ BEGIN_ENGINE_INPUT
  mixing_beta=0.3
  mixing_mode='plain'
  mixing_ndim=8
- tbeta_smoothing=.true.
- tq_smoothing=.true.
+ tbeta_smoothing=.false.
+ tq_smoothing=.false.
  tqr=.false.
 /
 &IONS
@@ -78,19 +77,19 @@ FIRST_IMAGE
 ATOMIC_POSITIONS { bohr }
 Al     0.00000000    0.00000000    0.00000000    0   0   0
 Al     5.41111110    0.00000000    0.00000000    0   0   0
-Al     0.00000000    5.41113843    0.00000000    0   0   0
+Al     5.41113843    5.41113843    0.00000000    0   0   0
 Al     5.41113843    5.41113843    0.00000000    0   0   0
 H      0.00000000    0.00000000    3.11055670    0   0   1
 LAST_IMAGE 
 ATOMIC_POSITIONS { bohr }
 Al     0.00000000    0.00000000    0.00000000    0   0   0
 Al     5.41111110    0.00000000    0.00000000    0   0   0
-Al     0.00000000    5.41113843    0.00000000    0   0   0
+Al     5.41113843    5.41113843    0.00000000    0   0   0
 Al     5.41113843    5.41113843    0.00000000    0   0   0
 H      5.41113843    5.41113843    3.11055670    0   0   1
 END_POSITIONS 
 K_POINTS automatic
- 6 6 1 1 1 1
+ 6 6 1 1 1 0
 CELL_PARAMETERS bohr
  10.82227686 0.0 0.0
  0.0 10.82227686 0.0
