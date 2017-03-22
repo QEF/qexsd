@@ -10,15 +10,15 @@ Authors: Paolo Giannozzi, Pietro Delugas
         xmlns:qes="http://www.quantum-espresso.org/ns/qes/qes-1.0"
         xmlns:neb="http://www.quantum-espresso.org/ns/neb"
         targetNamespace="http://www.quantum-espresso.org/ns/neb">
-    <import id="qes" schemaLocation="./qes.xsd"/>
-    <element name="NebRun" type="neb:NebRunType"/>
+    <import id="qes" namespace="http://www.quantum-espresso.org/ns/qes/qes-1.0"  schemaLocation="./qes.xsd"/>
+    <element name="nebRun" type="neb:NebRunType"/>
     <complexType name="NebRunType">
         <sequence>
             <element name="GeneralInfo" type="qes:general_infoType" minOccurs="0"/>
             <element name="ParallelInfo" type="neb:nebPInfoType" minOccurs="0"/>
-            <element name="Input" type="neb:nebInputType" minOccurs="1" maxOccurs="1"/>
-            <element name="NebStep" type="neb:nebStepType" minOccurs="0" maxOccurs="unbounded" />
-            <element name="NebOutput" type="neb:nebOutputType" minOccurs="0" maxOccurs="1"/>
+            <element name="input" type="neb:nebInputType" minOccurs="1" maxOccurs="1"/>
+            <element name="nebStep" type="neb:nebStepType" minOccurs="0" maxOccurs="unbounded" />
+            <element name="nebOutput" type="neb:nebOutputType" minOccurs="0" maxOccurs="1"/>
             <element type="nonNegativeInteger" name="CpuTime" minOccurs="0"/>
             <element type="qes:statusType" name="status" minOccurs="0" />
             <element type="qes:closedType" name="closed" minOccurs="0"/>
@@ -33,7 +33,7 @@ Authors: Paolo Giannozzi, Pietro Delugas
 
     <complexType name="nebInputType">
         <sequence>
-            <element name="path"    type="neb:pathInnputType"/>
+            <element name="path"    type="neb:pathInputType"/>
             <element name="engine"  type="neb:engineInputType"/>
         </sequence>
     </complexType>
@@ -49,27 +49,26 @@ Authors: Paolo Giannozzi, Pietro Delugas
             <element name="endImagesOptimizationFlag" type="boolean" maxOccurs="1" default="false"/>
             <element name="minimumImageFlag" type="boolean" maxOccurs="1" default="false"/>
             <element name="temperature" type="double" minOccurs="0" maxOccurs="1" />
-            <element name="optimizatioStepLength" type="double" minOccurs="1" maxOccurs="1" />
+            <element name="optimizationStepLength" type="double" minOccurs="1" maxOccurs="1" />
             <element name="pathThreshold" type="double"/>
             <element name="elasticConstMax" type="double" minOccurs="1" maxOccurs="1" />
             <element name="elasticConstMin" type="double" minOccurs="1" maxOccurs="1"/>
             <element name="useMassesFlag" type="boolean" default="false" maxOccurs="1"/>
             <element name="useFreezingFlag" type="boolean" default="false" maxOccurs="1"/>
-            <element name="constantBiasFlag" type="boolean" default="false" maxOccurs="1"/>
+            <element name="constantBiasFlag" type="boolean" default="false" minOccurs="0" maxOccurs="1"/>
             <element name="targetFermiEnergy" type="double" minOccurs="0" maxOccurs="1"/>
             <element name="totChargeFirst" type="double" minOccurs="0" maxOccurs="1"/>
             <element name="totChargeLast" type="double" minOccurs="0" maxOccurs="1" />
             <element name="climbingImageIndex" type="positiveInteger" minOccurs="0" maxOccurs="unbounded"/>
         </sequence>
     </complexType>
-
     <complexType name="engineInputType">
         <sequence>
             <element type="qes:control_variablesType" name="control_variables"/>
-            <element type="qes:atomic_speciesType" name="atomic_species"/>
-            <element type="qes:atomic_structureType" minOccurs="2" maxOccurs="unbounded" />
+            <element type="qes:atomic_speciesType" name="atomic_species" />
+            <element name="atomic_structure" type="qes:atomic_structureType" minOccurs="2" maxOccurs="unbounded"/>
             <element type="qes:dftType" name="dft"/>
-            <element type="qes:spinType" name="spin"/>
+            <element type="qes:spinType" name="spin" />
             <element type="qes:bandsType" name="bands"/>
             <element type="qes:basisType" name="basis"/>
             <element type="qes:electron_controlType" name="electron_control"/>
@@ -163,6 +162,4 @@ Authors: Paolo Giannozzi, Pietro Delugas
         <attribute type="double" name="alat" use="optional"/>
         <attribute type="positiveInteger" name="bravais_index" use="optional"/>
     </complexType>
-
-
 </schema>
