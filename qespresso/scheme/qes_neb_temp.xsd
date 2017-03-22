@@ -634,7 +634,7 @@ Authors: Paolo Giannozzi, Pietro Delugas
   </complexType>
   <complexType name="ion_controlType">
     <sequence>
-      <element type="string" name="ion_dynamics" />
+      <element type="string" name="ion_dynamics" minOccurs="0"/>
       <element type="double" name="upscale" minOccurs="0" />
       <element type="boolean" name="remove_rigid_rot" minOccurs="0" />
       <element type="boolean" name="refold_pos" minOccurs="0" />
@@ -666,8 +666,8 @@ Authors: Paolo Giannozzi, Pietro Delugas
   </complexType>
   <complexType name="cell_controlType">
     <sequence>
-      <element type="string" name="cell_dynamics"/>
-      <element type="double" name="pressure" default="0.0" /> 
+      <element type="string" name="cell_dynamics" minOccurs ="0"/>
+      <element type="double" name="pressure" default="0.0" minOccurs ="0" />
       <element type="double" name="wmass" minOccurs="0" />
       <element type="double" name="cell_factor" minOccurs="0" />
       <element type="boolean" name="fix_volume" minOccurs="0" />

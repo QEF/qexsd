@@ -8,7 +8,7 @@
 # Authors: Davide Brunato, Giovanni Borghi
 #
 """
-Convert from XML input  to Fortran input
+Convert from XML input  to Fortran input for neb.x
 """
 
 import sys
@@ -52,11 +52,11 @@ if __name__ == '__main__':
     xml_conf = qespresso.NebDocument()
     input_fn = getattr(args, 'in')
     xml_conf.read(input_fn)
-    pw_in = xml_conf.get_qe_input()
+    neb_in = xml_conf.get_qe_input()
 
     input_fn_name, input_fn_ext = os.path.splitext(input_fn)
     outfile = input_fn_name + '.in'
 
     with open(outfile, mode='w') as f:
-        f.write(pw_in)
+        f.write(neb_in)
         print("Input configuration written to file '%s' ..." % outfile)
