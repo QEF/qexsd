@@ -299,7 +299,7 @@ def get_neb_images_positions_card(name, **kwargs):
         interm_pos = []
 
     lines = ['%s '%'BEGIN POSITIONS']
-    lines.append('   %s '%'FIRST_IMAGE')
+    lines.append('%s '%'FIRST_IMAGE')
     atoms = first_positions.get('atom',[])
     my_nat = len (atoms)
     if my_nat <= 0:
@@ -312,44 +312,44 @@ def get_neb_images_positions_card(name, **kwargs):
     if free_positions and len(free_positions) != len(atoms):
         logger.error("ATOMIC_POSITIONS: incorrect number of position constraints!")
 
-    lines.append ('      %s { %s }' % ('ATOMIC_POSITIONS', 'bohr') )
+    lines.append ('%s { %s }' % ('ATOMIC_POSITIONS', 'bohr') )
     for k in range(len(atoms)):
-        sp_name = atoms[k]['name']
-        coords = ' '.join([str(value) for value in atoms[k]['_text']])
+        sp_name = '{:4}'.format(atoms[k]['name'])
+        coords = '{:12.8f}  {:12.8f}  {:12.8f}'.format(*atoms[k]['_text'])
         if k < len(free_positions):
-            free_pos = ' '.join([str(value) for value in free_positions[k]])
-            lines.append('         %s %s %s' % (sp_name, coords, free_pos))
+            free_pos = '{:4d}{:4d}{:4d}'.format(*[int(value) for value in free_positions[k]])
+            lines.append('%s %s %s' % (sp_name, coords, free_pos))
         else:
-            lines.append('         %s %s' % (sp_name, coords))
+            lines.append('%s %s' % (sp_name, coords))
 
     for inter in interm_pos:
         atoms = inter['atom']
         if len(atoms) != my_nat:
             logger.error('Found images with differing number of atoms !!!')
 
-        lines.append('   %s '%'INTERMEDIATE_IMAGE')
-        lines.append('      %s { %s }'% ('ATOMIC_POSITIONS','bohr') )
+        lines.append('%s '%'INTERMEDIATE_IMAGE')
+        lines.append('%s { %s }'% ('ATOMIC_POSITIONS','bohr') )
         for k in range(len(atoms)):
-            sp_name = atoms[k]['name']
-            coords = ' '.join([str(value) for value in atoms[k]['_text']])
+            sp_name = '{:4}'.format(atoms[k]['name'])
+            coords = '{:12.8f}  {:12.8f}  {:12.8f}'.format(*atoms[k]['_text'])
             if k < len(free_positions):
-                free_pos = ' '.join([str(value) for value in free_positions[k]])
-                lines.append('         %s %s %s' % (sp_name, coords, free_pos))
+                free_pos = '{:4d}{:4d}{:4d}'.format(*[int(value) for value in free_positions[k]])
+                lines.append('%s %s %s' % (sp_name, coords, free_pos))
             else:
-                lines.append('         %s %s' % (sp_name, coords))
+                lines.append('%s %s' % (sp_name, coords))
     atoms=last_positions['atom']
     if len(atoms) != my_nat:
         logger.error('Found images with differing number of atoms !!!')
-    lines.append('   %s '%'LAST_IMAGE')
-    lines.append('       %s { %s }'%('ATOMIC_POSITIONS', 'bohr') )
+    lines.append('%s '%'LAST_IMAGE')
+    lines.append('%s { %s }'%('ATOMIC_POSITIONS', 'bohr') )
     for k in range(len(atoms)):
-        sp_name = atoms[k]['name']
-        coords = ' '.join([str(value) for value in atoms[k]['_text']])
+        sp_name = '{:4}'.format(atoms[k]['name'])
+        coords = '{:12.8f}  {:12.8f}  {:12.8f}'.format(*atoms[k]['_text'])
         if k < len(free_positions):
-            free_pos = ' '.join([str(value) for value in free_positions[k]])
-            lines.append('      %s %s %s' % (sp_name, coords, free_pos))
+            free_pos = '{:4d}{:4d}{:4d}'.format(*[int(value) for value in free_positions[k]])
+            lines.append('%s %s %s' % (sp_name, coords, free_pos))
         else:
-            lines.append('      %s %s' % (sp_name, coords))
+            lines.append('%s %s' % (sp_name, coords))
     lines.append( '%s '%'END_POSITIONS')
     return lines
 
