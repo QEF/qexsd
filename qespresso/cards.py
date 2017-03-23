@@ -298,7 +298,7 @@ def get_neb_images_positions_card(name, **kwargs):
     else:
         interm_pos = []
 
-    lines = ['%s '%'BEGIN POSITIONS']
+    lines = ['%s '%'BEGIN_POSITIONS']
     lines.append('%s '%'FIRST_IMAGE')
     atoms = first_positions.get('atom',[])
     my_nat = len (atoms)
