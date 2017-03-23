@@ -720,6 +720,11 @@ class NebInputConverter(RawInputConverter):
         )
 
     def get_qe_input(self):
+        """
+        Overrides method in RawInputConverter because few lines in between the namelists are requested for
+        the NEB input.
+        :return: a string containing the text input for NEB calculations
+        """
         qe_input = super(NebInputConverter, self).get_qe_input().split('\n')
         qe_input =['BEGIN','BEGIN_PATH_INPUT'] +qe_input
         index = qe_input.index('&CONTROL')
