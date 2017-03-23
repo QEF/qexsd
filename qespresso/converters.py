@@ -718,6 +718,7 @@ class NebInputConverter(RawInputConverter):
             input_cards=('CLIMBING_IMAGES', 'ATOMIC_SPECIES','ATOMIC_POSITIONS', 'K_POINTS',
                          'CELL_PARAMETERS', 'ATOMIC_FORCES')
         )
+        self._input['SYSTEM']['ibrav'] = 0
 
     def get_qe_input(self):
         qe_input = super(NebInputConverter, self).get_qe_input().split('\n')
