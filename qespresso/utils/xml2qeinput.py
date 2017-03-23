@@ -49,8 +49,22 @@ if __name__ == '__main__':
 
     qespresso.set_logger(args.verbosity)
 
-    xml_conf = qespresso.NebDocument()
+    xml_conf = None
     input_fn = getattr(args, 'in')
+    with open(input_fn) as input_fh:
+        for line in input_fh:
+            if '<neb:nebRun' in line:
+                xml_conf = qespresso.NebDocument()
+                break
+            elif '<qes:espresso' in line:
+                xml_conf = qespresso.PwDocument()
+                break
+
+    if xml_conf is None:
+        sys.stderr.write("Could not find correct XML in %s, exiting...\n"
+                         % input_fn)
+        sys.exit(1)
+
     xml_conf.read(input_fn)
     pw_in = xml_conf.get_qe_input()
 
