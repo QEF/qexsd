@@ -344,7 +344,7 @@ class PwInputConverter(RawInputConverter):
         },
         'atomic_structure': {
             'nat': 'SYSTEM[nat]',
-            '_text': [
+            '_text': [('SYSTEM[ibrav]', options.set_ibrav_to_zero, None ),
                 ("ATOMIC_POSITIONS", cards.get_atomic_positions_cell_card, None),
                 ("CELL_PARAMETERS", cards.get_cell_parameters_card, None)
             ],
@@ -557,11 +557,9 @@ class PwInputConverter(RawInputConverter):
         )
         if 'xml_file' in kwargs:
             self._input['CONTROL']['input_xml_schema_file'] = u'\'{}\''.format(os.path.basename(kwargs['xml_file']))
-        self._input['SYSTEM']['ibrav'] = 0
 
     def clear_input(self):
         super(PwInputConverter, self).clear_input()
-        self._input['SYSTEM']['ibrav'] = 0
 
 
 class PhononInputConverter(RawInputConverter):
@@ -704,7 +702,7 @@ class NebInputConverter(RawInputConverter):
         ENGINE_TEMPLATE_MAP = copy.deepcopy(PwInputConverter.PW_TEMPLATE_MAP)
         ENGINE_TEMPLATE_MAP['atomic_structure'] = {
             'nat': ("SYSTEM[nat]", options.neb_set_system_nat,None),
-            '_text': [
+            '_text': [('SYSTEM[ibrav]', options.set_ibrav_to_zero, None),
                 ("CELL_PARAMETERS", cards.get_neb_cell_parameters_card, None),
                 ("ATOMIC_POSITIONS", cards.get_neb_images_positions_card,None)
             ],
@@ -718,7 +716,6 @@ class NebInputConverter(RawInputConverter):
             input_cards=('CLIMBING_IMAGES', 'ATOMIC_SPECIES','ATOMIC_POSITIONS', 'K_POINTS',
                          'CELL_PARAMETERS', 'ATOMIC_FORCES')
         )
-        self._input['SYSTEM']['ibrav'] = 0
 
     def get_qe_input(self):
         """

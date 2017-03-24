@@ -85,13 +85,15 @@ def get_atomic_positions_cell_card(name, **kwargs):
     # Add atomic positions
     lines = ['%s %s' % (name, 'crystal_sg' if is_wyckoff else 'bohr')]
     for k in range(len(atoms)):
-        name = atoms[k]['name']
-        coords = ' '.join([str(value) for value in atoms[k]['_text']])
+        sp_name = '{:4}'.format( atoms[k]['name'] )
+        coords = '{:12.8f}  {:12.8f}  {:12.8f}'.format(*atoms[k]['_text'])
+        #coords = ' '.join([str(value) for value in atoms[k]['_text']])
         if k < len(free_positions):
-            free_pos = ' '.join([str(value) for value in free_positions[k]])
-            lines.append(' %s %s %s' % (name, coords, free_pos))
+            #free_pos = ' '.join([str(value) for value in free_positions[k]])
+            free_pos = '{:4d}{:4d}{:4d}'.format(*[int(value) for value in free_positions[k]])
+            lines.append('%s %s %s' % (sp_name, coords, free_pos))
         else:
-            lines.append(' %s %s' % (name, coords))
+            lines.append('%s %s' % (sp_name, coords))
 
     return lines
 
@@ -219,7 +221,7 @@ def get_cell_parameters_card(name, **kwargs):
         for key in sorted(cells):
             if key not in ['a1', 'a2', 'a3']:
                 continue
-            lines.append(' %s' % ' '.join([str(value) for value in cells[key]]))
+            lines.append( (3*'{:12.8f} ').format(*cells[key]))
         return lines
     return []
 
@@ -377,7 +379,7 @@ def get_neb_cell_parameters_card (name, **kwargs):
         for key in sorted(cells):
             if key not in ['a1', 'a2', 'a3']:
                 continue
-            lines.append(' %s' % ' '.join([str(value) for value in cells[key]]))
+            lines.append( (3*'{:12.8f}').format(*cells[key]) )
         return lines
     return []
 

@@ -124,6 +124,9 @@ def get_system_nspin(name, **kwargs):
                      "parameter '%s'! %s" % (name, err))
         return []
 
+def set_ibrav_to_zero(name,**kwargs):
+    line = '  ibrav = 0'
+    return [line]
 
 def get_system_eamp(name, **kwargs):
     """
