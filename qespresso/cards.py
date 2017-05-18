@@ -79,21 +79,27 @@ def get_atomic_positions_cell_card(name, **kwargs):
 
     # Check atoms with position constraints
     free_positions = kwargs.get('free_positions', [])
-    if free_positions and len(free_positions) != len(atoms):
-        logger.error("ATOMIC_POSITIONS: incorrect number of position constraints!")
+
+    if free_positions:
+        # Cover the case when free positions are provided for only one atom
+        if type(free_positions[0]) not in (list, tuple):
+            free_positions = [free_positions]
+
+        if len(free_positions) != len(atoms):
+            logger.error("ATOMIC_POSITIONS: incorrect number of position constraints!")
 
     # Add atomic positions
     lines = ['%s %s' % (name, 'crystal_sg' if is_wyckoff else 'bohr')]
     for k in range(len(atoms)):
-        sp_name = '{:4}'.format( atoms[k]['name'] )
-        coords = '{:12.8f}  {:12.8f}  {:12.8f}'.format(*atoms[k]['_text'])
+        line = '{:4}'.format( atoms[k]['name'] )
+        line += ' {:12.8f}  {:12.8f}  {:12.8f}'.format(*atoms[k]['_text'])
         #coords = ' '.join([str(value) for value in atoms[k]['_text']])
-        if k < len(free_positions):
+
+        if free_positions:
             #free_pos = ' '.join([str(value) for value in free_positions[k]])
-            free_pos = '{:4d}{:4d}{:4d}'.format(*[int(value) for value in free_positions[k]])
-            lines.append('%s %s %s' % (sp_name, coords, free_pos))
-        else:
-            lines.append('%s %s' % (sp_name, coords))
+            line += ' {:4d}{:4d}{:4d}'.format(*map(int, free_positions[k]))
+
+        lines.append(line)
 
     return lines
 
