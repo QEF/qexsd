@@ -243,27 +243,38 @@ def get_qpoints_card(name, **kwargs):
     """
     try:
         ldisp = kwargs['ldisp']
-        qplot = kwargs['qplot']
-        if not qplot and ldisp:
-            return []
-        q_points_list = kwargs['q_points_list']['q_point']
-    except KeyError as err:
-        logger.error("Missing required arguments when building "
-                     "parameter '%s'! %s" % (name, err))
+    except KeyError:
+        ldisp = False
+    if ldisp:
         return []
 
-    lines = []
-    if not ldisp and not qplot:
-        for q_point in q_points_list:
-            lines.append(' '.join([str(coord) for coord in q_point['_text']]))
-
-    elif qplot:
-        nqs = kwargs['nqs']
-        lines.append(' {0}'.format(nqs))
+    try:
+        qplot = kwargs['qplot']
+    except KeyError:
+        qplot = False
+    try:
+        ldisp = kwargs['ldisp']
+    except KeyError:
+        ldisp = False
+    if not (qplot or ldisp):
+        try:
+            xq = kwargs['xq_dir']
+        except KeyError:
+            xq =[0.e0, 0.e0, 0.e0]
+        line = "{:6.4f}  {:8.4f}  {:8.4f}".format(xq[0],xq[1],xq[2])
+        return [line]
+    lines=[]
+    if (qplot):
+        try:
+            nqs = kwargs['nqs']
+        except KeyError:
+            raise RuntimeWarning("qplot was set to true in input but no value for nqs was provided assumint nqs = 1")
+            nqs = 1
+        lines.append('{:4d}'.format(nqs))
+        q_points_list = kwargs['q_points_list']['q_point']
         for q_point in q_points_list:
             vector = ' '.join([str(coord) for coord in q_point['_text']])
             lines.append(' %s %s' % (vector, q_point['weight']))
-
     return lines
 
 def get_climbing_images(name, **kwargs):
@@ -280,8 +291,8 @@ def get_climbing_images(name, **kwargs):
             line = fmt%tuple(line)
         else:
             line =' %d '%int(kwargs['climbingImageIndex'])
-        return line
-    return ''
+        return [line]
+    return ['']
 
 def get_neb_images_positions_card(name, **kwargs):
     """
