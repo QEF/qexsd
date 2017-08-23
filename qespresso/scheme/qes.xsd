@@ -195,6 +195,7 @@ Authors: Antonio Zambon, Paolo Giannozzi, Pietro Delugas
       <choice minOccurs="1" maxOccurs="1">
          <element type="qes:atomic_positionsType" name="atomic_positions" minOccurs="0"  />
          <element type="qes:wyckoff_positionsType" name="wyckoff_positions" minOccurs="0" />
+         <element type="qes:atomic_positionsType" name="crystal_positions" minOccurs="0" />
       </choice>
       <element type="qes:cellType" name="cell"/>
     </sequence>
