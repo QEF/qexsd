@@ -200,9 +200,13 @@ def get_atomic_forces_card(name, **kwargs):
     except KeyError:
         logger.debug("Missing required arguments when building ATOMIC_FORCES card!")
         return []
-
+    if len(external_atomic_forces ) == 0:
+       return []
     # Warning if number of atoms in atomic positions differ with forces
-    atomic_positions = kwargs.get('atomic_positions', {})
+    try:
+        atomic_positions = kwargs.get('atomic_positions', {})
+    except KeyError:
+        atomic_positions = kwargs.get('crystal_positions',{})
     atoms = atomic_positions.get('atom', [])
     if atoms and len(atoms) != len(external_atomic_forces):
         logger.error("incorrect number of atomic forces")

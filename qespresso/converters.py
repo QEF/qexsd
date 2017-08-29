@@ -347,6 +347,7 @@ class PwInputConverter(RawInputConverter):
                 ("CELL_PARAMETERS", cards.get_cell_parameters_card, None)
             ],
             'atomic_positions': ('ATOMIC_FORCES', cards.get_atomic_forces_card, None),
+            'crystal_positions':('ATOMIC_FORCES', cards.get_atomic_forces_card, None)
         },
         'dft': {
             'functional': "SYSTEM[input_dft]",
