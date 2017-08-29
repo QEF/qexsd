@@ -333,6 +333,7 @@ Authors: Paolo Giannozzi, Pietro Delugas
     <sequence>
       <choice minOccurs="1" maxOccurs="1">
          <element type="neb:atomic_positionsType" name="atomic_positions" minOccurs="0"  />
+          <element type="neb:atomic_positionsType" name="crystal_positions" minOccurs="0"/>
          <element type="neb:wyckoff_positionsType" name="wyckoff_positions" minOccurs="0" />
       </choice>
       <element type="neb:cellType" name="cell"/>

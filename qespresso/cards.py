@@ -321,11 +321,21 @@ def get_neb_images_positions_card(name, **kwargs):
     if len(images) < 2:
         logger.error("At least the atomic structures for first and last image should be provided")
         return []
-    first_positions = images[0].get('atomic_positions',{})
+    first_positions = images[0].get('crystal_positions')
+    units = 'crystal'
+    if first_positions is None:
+        first_positions = images[0].get('atomic_positions',{})
+        units = 'bohr'
     his_nat = int(images[0].get('nat',0) )
-    last_positions  = images[-1].get('atomic_positions',{})
+    if units == 'crystal':
+        last_positions = images[-1].get('crystal_positions',{})
+    else:
+        last_positions = images[-1].get('atomic_positions',{})
     if len(kwargs['atomic_structure']) > 2:
-        interm_pos = [ats.get('atomic_positions',{}) for ats in images[1:-1] ]
+        if units == 'crystal':
+            interm_pos = [ats.get('crystal_positions',{}) for ats in images[1:-1] ]
+        else:
+            interm_pos = [ats.get('atomic_positions',{})  for ats in images[1:-1]]
     else:
         interm_pos = []
 
@@ -343,7 +353,7 @@ def get_neb_images_positions_card(name, **kwargs):
     if free_positions and len(free_positions) != len(atoms):
         logger.error("ATOMIC_POSITIONS: incorrect number of position constraints!")
 
-    lines.append ('%s { %s }' % ('ATOMIC_POSITIONS', 'bohr') )
+    lines.append ('%s { %s }' % ('ATOMIC_POSITIONS', units) )
     for k in range(len(atoms)):
         sp_name = '{:4}'.format(atoms[k]['name'])
         coords = '{:12.8f}  {:12.8f}  {:12.8f}'.format(*atoms[k]['_text'])
@@ -359,7 +369,7 @@ def get_neb_images_positions_card(name, **kwargs):
             logger.error('Found images with differing number of atoms !!!')
 
         lines.append('%s '%'INTERMEDIATE_IMAGE')
-        lines.append('%s { %s }'% ('ATOMIC_POSITIONS','bohr') )
+        lines.append('%s { %s }'% ('ATOMIC_POSITIONS', units) )
         for k in range(len(atoms)):
             sp_name = '{:4}'.format(atoms[k]['name'])
             coords = '{:12.8f}  {:12.8f}  {:12.8f}'.format(*atoms[k]['_text'])
@@ -372,7 +382,7 @@ def get_neb_images_positions_card(name, **kwargs):
     if len(atoms) != my_nat:
         logger.error('Found images with differing number of atoms !!!')
     lines.append('%s '%'LAST_IMAGE')
-    lines.append('%s { %s }'%('ATOMIC_POSITIONS', 'bohr') )
+    lines.append('%s { %s }'%('ATOMIC_POSITIONS', units) )
     for k in range(len(atoms)):
         sp_name = '{:4}'.format(atoms[k]['name'])
         coords = '{:12.8f}  {:12.8f}  {:12.8f}'.format(*atoms[k]['_text'])
@@ -414,4 +424,4 @@ def get_neb_cell_parameters_card (name, **kwargs):
 
 
 def get_neb_atomic_forces_card   (name, **kwargs):
-    print (kwargs)
+    pass
