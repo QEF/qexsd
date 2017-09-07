@@ -76,4 +76,6 @@ if __name__ == '__main__':
 
     with open(outfile, mode='w') as f:
         f.write(qe_in)
+        # Add a new line so that READ namelist work for all compilers
+        f.write('\n')
         print("Input configuration written to file '%s' ..." % outfile)
