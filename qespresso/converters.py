@@ -346,8 +346,10 @@ class PwInputConverter(RawInputConverter):
                 ("ATOMIC_POSITIONS", cards.get_atomic_positions_cell_card, None),
                 ("CELL_PARAMETERS", cards.get_cell_parameters_card, None)
             ],
-            'atomic_positions': ('ATOMIC_FORCES', cards.get_atomic_forces_card, None),
-            'crystal_positions':('ATOMIC_FORCES', cards.get_atomic_forces_card, None)
+            'atomic_positions': [('ATOMIC_FORCES', cards.get_atomic_forces_card, None),
+                                 ('CONSTRAINTS', cards.get_atomic_constraints_card,None)],
+            'crystal_positions':[('ATOMIC_FORCES', cards.get_atomic_forces_card, None),
+                                 ('CONSTRAINTS', cards.get_atomic_constraints_card, None)]
         },
         'dft': {
             'functional': "SYSTEM[input_dft]",
@@ -540,7 +542,7 @@ class PwInputConverter(RawInputConverter):
             'nk_per_string': "CONTROL[nppstr]",
             'n_berry_cycles': "CONTROL[nberrycyc]",
         },
-        'atomic_constraints': ("CONSTRAINTS", cards.get_atomic_constraints_card),  # Card
+        'atomic_constraints':  ('CONSTRAINTS', cards.get_atomic_constraints_card, None),  # Card
         'spin_constraints': {
             'spin_constraints': "SYSTEM[constrained_magnetization]",
             'lagrange_multiplier': "SYSTEM[lambda]",
@@ -553,7 +555,7 @@ class PwInputConverter(RawInputConverter):
             *conversion_maps_builder(self.PW_TEMPLATE_MAP),
             input_namelists=('CONTROL', 'SYSTEM', 'ELECTRONS', 'IONS', 'CELL'),
             input_cards=('ATOMIC_SPECIES', 'ATOMIC_POSITIONS', 'K_POINTS',
-                         'CELL_PARAMETERS', 'ATOMIC_FORCES')
+                         'CELL_PARAMETERS', 'ATOMIC_FORCES', 'CONSTRAINTS')
         )
         if 'xml_file' in kwargs:
             self._input['CONTROL']['input_xml_schema_file'] = u'\'{}\''.format(os.path.basename(kwargs['xml_file']))

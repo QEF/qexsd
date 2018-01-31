@@ -121,25 +121,32 @@ def get_atomic_constraints_card(name, **kwargs):
     :return: List of strings
     """
     try:
-        num_of_constraints = kwargs['num_of_constraints']
-        tolerance = kwargs['tolerance']
         atomic_constraints = kwargs['atomic_constraints']
-
     except KeyError:
-        logger.error("Missing required arguments when building ATOMIC_POSITIONS card!")
         return []
 
-    lines = [name, '{0} {1}'.format(num_of_constraints, tolerance)]
-    for constraint in atomic_constraints:
-        constr_parms = constraint['constr_parms']  # list with 4 float items
-        constr_parms.extend([0] * max(0, 4 - len(constr_parms)))
-        constr_type = constraint['constr_type']  # string
-        constr_target = constraint['constr_target']  # float
-        lines.append('{0} {1} {2}'.format(
-            constr_type,
-            ' '.join([str(item) for item in constr_parms]),
-            constr_target
-        ))
+    num_of_constraints = atomic_constraints['num_of_constraints']
+    tolerance = atomic_constraints.get('tolerance')
+    list_of_constraints = atomic_constraints['atomic_constraint']
+    if len(list_of_constraints) != num_of_constraints:
+        logger.error("The number of provided constraints is different from num_of_constraints")
+    lines = [name]
+    if tolerance:
+        lines.append('{}  {}'.format(num_of_constraints, tolerance))
+    else:
+        lines.append('{}'.format(num_of_constraints))
+    for constr in list_of_constraints:
+        c_type  = constr['constr_type']
+        parms = constr['constr_parms']
+        if c_type in ['distance', 'planar_angle', 'torsional_angle']:
+            parms = [int(_) for _ in parms]
+        elif c_type in ['type_coord', 'atom_coord']:
+            parms = [int(_) for _ in parms[:2]] + parms[2:]
+        elif c_type in ['bennet_proj']:
+            parms = [int(parms[0])]+parms[1:]
+        target = constr['constr_target']
+        constr_line = "'{}' "+ len(parms)*' {} ' + ' {}'
+        lines.append(constr_line.format(*((c_type,)+tuple(parms)+(target,) )))
     return lines
 
 
