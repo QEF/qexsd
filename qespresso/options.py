@@ -301,3 +301,16 @@ def set_lda_plus_u_flag(name,**kwargs):
         lines.append('lda_plus_u = .t.')
         break
     return lines
+
+def set_boolean_flag(name,**kwargs):
+    lines=[]
+    related_tag=kwargs['_related_tag']
+    related_data=kwargs[related_tag]
+    if related_data in ['true','True','TRUE']:
+        lines.append(' %s = .true.'% related_tag)
+    else:
+        lines.append(' %s = .false.'%related_tag)
+    return lines
+
+def set_what_td_calculation(name, **kwargs):
+    return [kwargs['whatTD']]

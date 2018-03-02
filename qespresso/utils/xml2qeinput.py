@@ -58,8 +58,10 @@ if __name__ == '__main__':
         xml_conf = qespresso.PwDocument()
     elif elementName == 'nebRun':
         xml_conf = qespresso.NebDocument()
-    elif elementName =='espressoph':
+    elif elementName == 'espressoph':
         xml_conf = qespresso.PhononDocument()
+    elif elementName == 'tddfpt':
+        xml_conf = qespresso.TdDocument()
     else:
         sys.stderr.write("Could not find correct XML in %s, exiting...\n"
                          % input_fn)

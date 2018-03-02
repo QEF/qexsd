@@ -10,8 +10,8 @@
 import logging
 
 # QEspresso imports
-from .documents import QeDocument, PwDocument, PhononDocument, NebDocument
-from .converters import RawInputConverter, PwInputConverter, PhononInputConverter, NebInputConverter
+from .documents import QeDocument, PwDocument, PhononDocument, NebDocument, TdDocument
+from .converters import RawInputConverter, PwInputConverter, PhononInputConverter, NebInputConverter, TdInputConverter
 from .exceptions import ConfigError
 from .xsdtypes import XSD_BUILTIN_TYPES, XMLSchema
 from .utils.logger import set_logger
@@ -21,6 +21,6 @@ set_logger(1)
 
 __all__ = [
     'set_logger', 'ConfigError',
-    'QeDocument', 'PWConfiguration', 'PhononDocument',
-    'RawInputConverter', 'PwInputConverter', 'PhononInputConverter'
+    'QeDocument', 'PWConfiguration', 'PhononDocument', 'TdDocument',
+    'RawInputConverter', 'PwInputConverter', 'PhononInputConverter', 'TdInputConverter'
 ]

@@ -10,7 +10,7 @@
 import logging
 import os.path
 
-from .converters import PwInputConverter, PhononInputConverter, NebInputConverter
+from .converters import PwInputConverter, PhononInputConverter, NebInputConverter, TdInputConverter
 from .exceptions import ConfigError
 from .xsdtypes import etree_node_to_dict, XmlDocument
 from .xsdtypes.etree import etree_iter_path
@@ -26,7 +26,7 @@ class QeDocument(XmlDocument):
         self.input_builder = input_builder
 
         self.default_namespace = self.schema.target_namespace
-        qe_nslist = list(map(self.namespaces.get, ['qes','neb','qes_ph']))
+        qe_nslist = list(map(self.namespaces.get, ['qes','neb','qes_ph','qes_lr']))
         if not self.default_namespace in qe_nslist:
             raise NotImplementedError("Converter not implemented for this schema {}".format(self.default_namespace) )
 
@@ -55,7 +55,6 @@ class QeDocument(XmlDocument):
     def get_qe_input(self, use_defaults=True):
         if self._document is None:
             raise ConfigError("Configuration not loaded!")
-
         qe_input = self.input_builder(xml_file=self._config_file)
         schema = self.schema
         input_path = self.get_input_path()
@@ -180,3 +179,48 @@ class NebDocument(QeDocument):
 
     def get_input_path(self):
         return './input'
+
+class TdDocument(QeDocument):
+    """
+    Class to manage TDDFPT 
+    """
+    def __init__(self):
+        self._input_tag = 'input'
+        super(TdDocument, self).__init__(
+            xsd_file='%s/scheme/tddfpt.xsd' %
+            os.path.dirname(os.path.abspath(__file__)),
+            input_builder = TdInputConverter
+        )
+
+    def get_input_path(self):
+        return '.'
+
+
+
+
+
+
+# class SpectrumDocument(QeDocument):
+#     """
+#     Class to manage turbo-spectrum inputs
+#     """
+#     def __init__(self):
+#         self._input_tag = 'input'
+#         super(SpectrumDocument,self).__init__(
+#             xsd_file =
+#             '%s/scheme/qes_spectrum.xsd'%os.path.dirname(os.abspath(__file__)),
+#             input_builder = SpectrumInputConverter
+#         )
+#
+#     def get_input_path(self):
+#         return './input'
+#
+#     def get_qe_input(self, use_defaults =False):
+#         """
+#         overrides get_qe_input calling super get_qe_input with use_defaults set to False.
+#         :param use_defaults:
+#         :return: the input as obtained from its input builder
+#         """
+#         return super(SpectrumDocument, self).get_qe_input(use_defaults=use_defaults)
+ 
+
