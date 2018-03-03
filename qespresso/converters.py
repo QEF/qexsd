@@ -852,3 +852,32 @@ class TdInputConverter(RawInputConverter):
             qe_input = qe_input + '\n' + '\n'.join(temp[start:end+1])
         """ if not empty add lr_post namelist to qe_input """
         return qe_input
+
+
+class TD_spctInConverter(RawInputConverter):
+    """
+    converts the xml input file described by qes_spectrum scheme in namelist input for turbo_spectrum post-processing tool
+    """
+    SPEC_TEMPLACE_MAP = {
+        'itermax': 'lr_input[itermax]',
+        'itermax0': 'lr_input[itermax0]',
+        'itermax_actual': 'lr_input[itermax_actual]',
+        'extrapolation': 'lr_input[extrapolation]',
+        'start': 'lr_input[start]',
+        'end': 'lr_input[end]',
+        'increment': 'lr_input[increment]',
+        'ipol': 'lr_input[ipol]',
+        'outdir': 'lr_input[outdir]',
+        'prefix': 'lr_input[prefix]',
+        'epsil':   'lr_input[epsil]',
+        'sym_op': 'lr_input[sym_op]',
+        'verbosity': 'lr_input[verbosity]',
+        'units': 'lr_input[units]',
+        'td': 'lr_input[td]',
+        'eign_file': 'lr_input[eign_file]',
+        'eels': ('lr_input[eels]', options.set_boolean_flag, None)
+    }
+
+    def __init__(self, **kwargs):
+        super(TD_spctInConverter, self).__init__(*conversion_maps_builder(self.SPEC_TEMPLACE_MAP),
+                                                 input_namelists = ['lr_input'] )

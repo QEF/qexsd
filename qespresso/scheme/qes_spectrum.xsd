@@ -12,6 +12,10 @@ Authors: Pietro Delugas
 <element name="spectrumIn" type="qes_spectrum:spectrumInType"/>
     <complexType name="spectrumInType">
         <sequence>
+            <element name="prefix" type="string"/>
+            <element name="units" type="qes_spectrum:energyUnitsType" minOccurs="0" maxOccurs="1" default="Ry"/>
+            <element name="verbosity" type="integer" minOccurs="0" maxOccurs="1" default="0"/>
+            <element name="outdir" type="string" minOccurs="0" maxOccurs="1" default="./"/>
             <element name="itermax" type="positiveInteger" minOccurs="0" maxOccurs="1" default="1000"/>
             <element name="itermax0" type="positiveInteger" minOccurs="0" maxOccurs="1" default="1000"/>
             <element name="itermax_actual" type="positiveInteger" minOccurs="0" maxOccurs="1"/>
@@ -19,13 +23,12 @@ Authors: Pietro Delugas
             <element name="start" type="double" minOccurs="0" maxOccurs="1" default="0.0"/>
             <element name="end" type="double" minOccurs="0" maxOccurs="1" default="2.5"/>
             <element name="increment" type="double" minOccurs="0" maxOccurs="1" default="0.001"/>
+            <element name="ipol" type="integer" minOccurs="0" maxOccurs="1" default="1"/>
+
             <element name="epsil" type="double" minOccurs="0" maxOccurs="1" default="0.02"/>
             <element name="sym_op" type="integer" minOccurs="0" maxOccurs="1" default="0"/>
-            <element name="verbosity" type="integer" minOccurs="0" maxOccurs="1" default="0"/>
-            <element name="units" type="qes_spectrum:energyUnitsType" minOccurs="0" maxOccurs="1" default="Ry"/>
             <element name="td" type="qes_spectrum:tdChoiceType" minOccurs="0" maxOccurs="1" default="lanczos"/>
-            <element name="io_level" type="nonNegativeInteger"/>
-            <element name="prefix" type="string"/>
+            <element name="io_level" type="nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
             <element name="wfcdir" type="string" minOccurs="0" maxOccurs="0"/>
             <element name="max_seconds" type="positiveInteger" minOccurs="0" maxOccurs="1"/>
             <element name="eign_file" type="string" minOccurs="0" maxOccurs="1" default="pwscf.eigen"/>

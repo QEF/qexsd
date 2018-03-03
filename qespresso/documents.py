@@ -10,7 +10,7 @@
 import logging
 import os.path
 
-from .converters import PwInputConverter, PhononInputConverter, NebInputConverter, TdInputConverter
+from .converters import PwInputConverter, PhononInputConverter, NebInputConverter, TdInputConverter, TD_spctInConverter
 from .exceptions import ConfigError
 from .xsdtypes import etree_node_to_dict, XmlDocument
 from .xsdtypes.etree import etree_iter_path
@@ -26,7 +26,7 @@ class QeDocument(XmlDocument):
         self.input_builder = input_builder
 
         self.default_namespace = self.schema.target_namespace
-        qe_nslist = list(map(self.namespaces.get, ['qes','neb','qes_ph','qes_lr']))
+        qe_nslist = list(map(self.namespaces.get, ['qes','neb','qes_ph', 'qes_lr', 'qes_spectrum' ]))
         if not self.default_namespace in qe_nslist:
             raise NotImplementedError("Converter not implemented for this schema {}".format(self.default_namespace) )
 
@@ -200,27 +200,20 @@ class TdDocument(QeDocument):
 
 
 
-# class SpectrumDocument(QeDocument):
-#     """
-#     Class to manage turbo-spectrum inputs
-#     """
-#     def __init__(self):
-#         self._input_tag = 'input'
-#         super(SpectrumDocument,self).__init__(
-#             xsd_file =
-#             '%s/scheme/qes_spectrum.xsd'%os.path.dirname(os.abspath(__file__)),
-#             input_builder = SpectrumInputConverter
-#         )
-#
-#     def get_input_path(self):
-#         return './input'
-#
-#     def get_qe_input(self, use_defaults =False):
-#         """
-#         overrides get_qe_input calling super get_qe_input with use_defaults set to False.
-#         :param use_defaults:
-#         :return: the input as obtained from its input builder
-#         """
-#         return super(SpectrumDocument, self).get_qe_input(use_defaults=use_defaults)
+class SpectrumDocument(QeDocument):
+     """
+     Class to manage turbo-spectrum inputs
+     """
+     def __init__(self):
+         self._input_tag = 'input'
+         super(SpectrumDocument,self).__init__(
+             xsd_file =
+             '%s/scheme/qes_spectrum.xsd'%os.path.dirname(os.path.abspath(__file__)),
+             input_builder = TD_spctInConverter
+         )
+
+     def get_input_path(self):
+         return '.'
+
  
 
