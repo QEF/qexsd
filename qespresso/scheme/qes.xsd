@@ -877,6 +877,7 @@ Authors: Antonio Zambon, Paolo Giannozzi, Pietro Delugas
       <extension base="qes:doubleListType">
         <attribute type="integer" name="rank" use="optional"/>
         <attribute type="qes:integerListType" name="dims" use="optional"/>
+        <attribute type="string" name="order" use="optional"/>
       </extension>
     </simpleContent>
   </complexType>
@@ -885,6 +886,7 @@ Authors: Antonio Zambon, Paolo Giannozzi, Pietro Delugas
       <extension base="qes:integerListType">
         <attribute type="integer" name="rank" use="optional"/>
         <attribute type="qes:integerListType" name="dims" use="optional"/>
+        <attribute type="string" name="order" use="optional"/>
       </extension>
     </simpleContent>
   </complexType>
