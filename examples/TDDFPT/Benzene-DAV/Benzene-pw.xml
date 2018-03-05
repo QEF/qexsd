@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qes:espresso xsi:schemaLocation="http://www.quantum-espresso.org/ns/qes/qes-1.0 https://raw.githubusercontent.com/QEF/qexsd/master/qespresso/scheme/qes.xsd" Units="Hartree atomic units" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qes="http://www.quantum-espresso.org/ns/qes/qes-1.0">
+  <!--If not explicitely indicated, all quantities are expressed in Hartree atomic units-->
+  <input>
+    <control_variables>
+      <title>TDDFPT benzene test</title>
+      <calculation>scf</calculation>
+      <restart_mode>from_scratch</restart_mode>
+      <prefix>Benzene</prefix>
+      <pseudo_dir>../pseudo</pseudo_dir>
+      <outdir>./out</outdir>
+      <stress>false</stress>
+      <forces>false</forces>
+      <wf_collect>true</wf_collect>
+      <disk_io>low</disk_io>
+      <max_seconds>10000000</max_seconds>
+      <etot_conv_thr>1.000000000000e-4</etot_conv_thr>
+      <forc_conv_thr>1.000000000000e-3</forc_conv_thr>
+      <press_conv_thr>5.000000000000e-1</press_conv_thr>
+      <verbosity>low</verbosity>
+      <print_every>100000</print_every>
+    </control_variables>
+    <atomic_species ntyp="2">
+      <species name="C">
+        <mass>1.201000000000000e1</mass>
+        <pseudo_file>C.pz-rrkjus.UPF</pseudo_file>
+      </species>
+      <species name="H">
+        <mass>1.000000000000000e0</mass>
+        <pseudo_file>H.pz-rrkjus.UPF</pseudo_file>
+      </species>
+    </atomic_species>
+    <atomic_structure nat="12" alat="3.200000000000e1" bravais_index="6">
+      <atomic_positions>
+        <atom name="C" index="1">1.064520695063520e1 1.194469678662470e1 9.448630664428217e0</atom>
+        <atom name="C" index="2">1.293905223780152e1 1.591644881955932e1 9.448630664428217e0</atom>
+        <atom name="C" index="3">1.523261247867796e1 1.459228483701164e1 9.448630664428217e0</atom>
+        <atom name="C" index="4">1.523253032850351e1 1.194427228232566e1 9.448630664428217e0</atom>
+        <atom name="C" index="5">1.293876356512719e1 1.062038819845388e1 9.448630664428217e0</atom>
+        <atom name="C" index="6">1.064535558137500e1 1.459271926993178e1 9.448630664428217e0</atom>
+        <atom name="H" index="7">1.293943550260716e1 1.797555645743991e1 9.448630664428217e0</atom>
+        <atom name="H" index="8">1.701578292457503e1 1.562168439193853e1 9.448630664428217e0</atom>
+        <atom name="H" index="9">1.701565628457824e1 1.091486114904675e1 9.448630664428217e0</atom>
+        <atom name="H" index="10">1.293866367987298e1 8.561447289220261e0 9.448630664428217e0</atom>
+        <atom name="H" index="11">8.861976536169022e0 1.091550734845680e1 9.448630664428217e0</atom>
+        <atom name="H" index="12">8.862421910603473e0 1.562241000519958e1 9.448630664428217e0</atom>
+      </atomic_positions>
+      <cell>
+        <a1>3.200000000000000e1 0.000000000000000e0 0.000000000000000e0</a1>
+        <a2>0.000000000000000e0 3.200000000000000e1 0.000000000000000e0</a2>
+        <a3>0.000000000000000e0 0.000000000000000e0 2.656000000000000e1</a3>
+      </cell>
+    </atomic_structure>
+    <dft>
+      <functional>PZ</functional>
+    </dft>
+    <spin>
+      <lsda>false</lsda>
+      <noncolin>false</noncolin>
+      <spinorbit>false</spinorbit>
+    </spin>
+    <bands>
+      <nbnd>30</nbnd>
+      <tot_charge>0.000000000000000e0</tot_charge>
+      <occupations>fixed</occupations>
+    </bands>
+    <basis>
+      <gamma_only>true</gamma_only>
+      <ecutwfc>1.250000000000000e1</ecutwfc>
+      <ecutrho>1.250000000000000e2</ecutrho>
+    </basis>
+    <electron_control>
+      <diagonalization>davidson</diagonalization>
+      <mixing_mode>plain</mixing_mode>
+      <mixing_beta>7.000000000000000e-1</mixing_beta>
+      <conv_thr>1.000000000000000e-10</conv_thr>
+      <mixing_ndim>8</mixing_ndim>
+      <max_nstep>100</max_nstep>
+      <real_space_q>false</real_space_q>
+      <tq_smoothing>false</tq_smoothing>
+      <tbeta_smoothing>false</tbeta_smoothing>
+      <diago_thr_init>0.000000000000000e0</diago_thr_init>
+      <diago_full_acc>false</diago_full_acc>
+      <diago_cg_maxiter>20</diago_cg_maxiter>
+    </electron_control>
+    <k_points_IBZ>
+      <nk>1</nk>
+      <k_point weight="1.000000000000e0">0.000000000000000e0 0.000000000000000e0 0.000000000000000e0</k_point>
+    </k_points_IBZ>
+    <ion_control>
+      <ion_dynamics>none</ion_dynamics>
+      <remove_rigid_rot>false</remove_rigid_rot>
+      <refold_pos>false</refold_pos>
+    </ion_control>
+    <cell_control>
+      <cell_dynamics>none</cell_dynamics>
+      <pressure>0.000000000000000e0</pressure>
+      <wmass>7.114733754084522e4</wmass>
+      <cell_factor>0.000000000000000e0</cell_factor>
+      <free_cell rank="2" dims="3 3" order="F">
+        1 1 1
+        1 1 1
+        1 1 1
+        </free_cell>
+    </cell_control>
+    <symmetry_flags>
+      <nosym>false</nosym>
+      <nosym_evc>false</nosym_evc>
+      <noinv>false</noinv>
+      <no_t_rev>false</no_t_rev>
+      <force_symmorphic>false</force_symmorphic>
+      <use_all_frac>false</use_all_frac>
+    </symmetry_flags>
+  </input>
+</qes:espresso>
