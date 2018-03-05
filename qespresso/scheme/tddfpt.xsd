@@ -91,25 +91,25 @@ Authors: Pietro Delugas
             <element type="integer" name="num_init"/>
             <element type="integer" name="num_basis_max"/>
             <element type="double" name="res_conv_thr"/>
-            <element type="boolean" name="precondition"/>
+            <element type="boolean" name="precondition" minOccurs="0" maxOccurs="1"/>
             <element type="double" name="reference"/>
-            <element type="boolean" name="single_pole"/>
-            <element type="boolean" name="sort_contr"/>
-            <element type="boolean" name="diag_of_h"/>
+            <element type="boolean" name="single_pole" minOccurs="0" maxOccurs="1"/>
+            <element type="boolean" name="sort_contr" minOccurs="0" maxOccurs="1"/>
+            <element type="boolean" name="diag_of_h" minOccurs="0" maxOccurs="1"/>
             <element type="boolean" name="close_pre" minOccurs="0" maxOccurs="1" default="false"/>
             <element type="double" name="broadening" minOccurs="0" maxOccurs="1" default="0.05"/>
             <element type="boolean" name="print_spectrum" minOccurs="0" maxOccurs="1"/>
             <element type="double" name="start"/>
             <element type="double" name="finish"/>
             <element type="double" name="step"/>
-            <element type="boolean" name="if_check_orth"/>
-            <element type="boolean" name="if_random_init"/>
-            <element type="boolean" name="if_check_her"/>
+            <element type="boolean" name="if_check_orth" minOccurs="0" maxOccurs="1"/>
+            <element type="boolean" name="if_random_init" minOccurs="0" maxOccurs="1"/>
+            <element type="boolean" name="if_check_her" minOccurs="0" maxOccurs="1"/>
             <element type="positiveInteger" name="p_nbnd_occ"/>
             <element type="positiveInteger" name="p_nbnd_virt"/>
             <element type="boolean" name="poor_of_ram" minOccurs="0" maxOccurs="1"/>
             <element type="positiveInteger" name="max_iter" minOccurs="0" maxOccurs="1"/>
-            <element type="double" name="ecutfock"/>
+            <element type="double" name="ecutfock" minOccurs="0" maxOccurs="1"/>
             <element type="boolean" name="conv_assistant" minOccurs="0" maxOccurs="1"/>
             <element type="boolean" name="if_dft_spectrum" minOccurs="0" maxOccurs="1"/>
             <element type="boolean" name="no_hxc" minOccurs="0" maxOccurs="1"/>
