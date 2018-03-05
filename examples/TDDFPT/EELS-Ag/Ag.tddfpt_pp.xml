@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qes_spectrum:spectrumIn xsi:schemaLocation="http://www.quantum-espresso.org/ns/qes/qes_spectrum-1.0 https://raw.githubusercontent.com/QEF/qexsd/master/qespresso/scheme/qes_spectrum.xsd"
+               xmlns:qes_spectrum="http://www.quantum-espresso.org/ns/qes/qes_spectrum-1.0"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+    <prefix>Ag</prefix>
+    <outdir>./out</outdir>
+    <eels>true</eels>
+    <itermax0>500</itermax0>
+    <itermax>10000</itermax>
+    <extrapolation>osc</extrapolation>
+    <epsil>0.025</epsil>
+    <units>eV</units>
+    <start>0.0</start>
+    <end>50.0</end>
+    <increment>0.01</increment>
+</qes_spectrum:spectrumIn>

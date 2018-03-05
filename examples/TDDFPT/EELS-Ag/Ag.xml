@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qes:espresso xsi:schemaLocation="http://www.quantum-espresso.org/ns/qes/qes-1.0 https://raw.githubusercontent.com/QEF/qexsd/master/qespresso/scheme/qes.xsd"
+              Units="Hartree atomic units" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns:qes="http://www.quantum-espresso.org/ns/qes/qes-1.0">
+  <!--If not explicitely indicated, all quantities are expressed in Hartree atomic units-->
+  <input>
+    <control_variables>
+      <title>TDDFPT-EELS Example Ag (US PP)</title>
+      <calculation>scf</calculation>
+      <restart_mode>from_scratch</restart_mode>
+      <prefix>Ag</prefix>
+      <pseudo_dir>../pseudo</pseudo_dir>
+      <outdir>./out</outdir>
+      <stress>false</stress>
+      <forces>false</forces>
+      <wf_collect>true</wf_collect>
+      <disk_io>low</disk_io>
+      <max_seconds>10000000</max_seconds>
+      <etot_conv_thr>1.000000000000e-4</etot_conv_thr>
+      <forc_conv_thr>1.000000000000e-3</forc_conv_thr>
+      <press_conv_thr>5.000000000000e-1</press_conv_thr>
+      <verbosity>low</verbosity>
+      <print_every>100000</print_every>
+    </control_variables>
+    <atomic_species ntyp="1">
+      <species name="Ag">
+        <mass>1.078682000000000e2</mass>
+        <pseudo_file>Ag.pbe-dn-rrkjus_psl.0.1.UPF</pseudo_file>
+      </species>
+    </atomic_species>
+    <atomic_structure nat="1" alat="7.717000000000e0" bravais_index="2">
+      <atomic_positions>
+        <atom name="Ag" index="1">0.000000000000000e0 0.000000000000000e0 0.000000000000000e0</atom>
+      </atomic_positions>
+      <cell>
+        <a1>-3.858500000000000e0 0.000000000000000e0 3.858500000000000e0</a1>
+        <a2>0.000000000000000e0 3.858500000000000e0 3.858500000000000e0</a2>
+        <a3>-3.858500000000000e0 3.858500000000000e0 0.000000000000000e0</a3>
+      </cell>
+    </atomic_structure>
+    <dft>
+      <functional>PBE</functional>
+    </dft>
+    <spin>
+      <lsda>false</lsda>
+      <noncolin>false</noncolin>
+      <spinorbit>false</spinorbit>
+    </spin>
+    <bands>
+      <smearing degauss="2.000000000000e-2">mv</smearing>
+      <tot_charge>0.000000000000000e0</tot_charge>
+      <occupations>smearing</occupations>
+    </bands>
+    <basis>
+      <ecutwfc>2.000000000000000e1</ecutwfc>
+      <ecutrho>1.600000000000000e2</ecutrho>
+    </basis>
+    <electron_control>
+      <diagonalization>davidson</diagonalization>
+      <mixing_mode>plain</mixing_mode>
+      <mixing_beta>7.000000000000000e-1</mixing_beta>
+      <conv_thr>1.000000000000000e-12</conv_thr>
+      <mixing_ndim>8</mixing_ndim>
+      <max_nstep>100</max_nstep>
+      <real_space_q>false</real_space_q>
+      <tq_smoothing>false</tq_smoothing>
+      <tbeta_smoothing>false</tbeta_smoothing>
+      <diago_thr_init>0.000000000000000e0</diago_thr_init>
+      <diago_full_acc>false</diago_full_acc>
+      <diago_cg_maxiter>20</diago_cg_maxiter>
+    </electron_control>
+    <k_points_IBZ>
+      <monkhorst_pack nk1="4" nk2="4" nk3="4" k1="1" k2="1" k3="1">Uniform grid with offset</monkhorst_pack>
+    </k_points_IBZ>
+    <ion_control>
+      <ion_dynamics>none</ion_dynamics>
+      <remove_rigid_rot>false</remove_rigid_rot>
+      <refold_pos>false</refold_pos>
+    </ion_control>
+    <cell_control>
+      <cell_dynamics>none</cell_dynamics>
+      <pressure>0.000000000000000e0</pressure>
+      <wmass>9.831584979917244e4</wmass>
+      <cell_factor>0.000000000000000e0</cell_factor>
+      <free_cell rank="2" dims="3 3" order="F">
+        1 1 1
+        1 1 1
+        1 1 1
+        </free_cell>
+    </cell_control>
+    <symmetry_flags>
+      <nosym>false</nosym>
+      <nosym_evc>false</nosym_evc>
+      <noinv>false</noinv>
+      <no_t_rev>false</no_t_rev>
+      <force_symmorphic>false</force_symmorphic>
+      <use_all_frac>false</use_all_frac>
+    </symmetry_flags>
+  </input>
+</qes:espresso>
