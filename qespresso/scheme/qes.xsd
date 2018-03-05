@@ -22,6 +22,7 @@ Authors: Antonio Zambon, Paolo Giannozzi, Pietro Delugas
       <element type="nonNegativeInteger" name="cputime" minOccurs="0" />
       <element type="qes:closedType" name="closed" minOccurs="0" />
     </sequence>
+    <attribute name="Units" type="string" use="optional"/>
   </complexType>
   <!-- GENERAL INFO -->
   <complexType name="general_infoType">
