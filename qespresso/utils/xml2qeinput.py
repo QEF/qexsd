@@ -80,4 +80,7 @@ if __name__ == '__main__':
 
     with open(outfile, mode='w') as f:
         f.write(qe_in)
+        # Add a new line to the .in file so that READ namelist works for
+        # all fortran compilers
+        f.write('\n')
         print("Input configuration written to file '%s' ..." % outfile)
