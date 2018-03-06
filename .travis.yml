@@ -1,6 +1,5 @@
 language: python
 python:
   - 2.7
-  - nightly
 script:
   - python tests/test_converters.py
