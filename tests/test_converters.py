@@ -79,4 +79,17 @@ if __name__ == '__main__':
     prova = os.path.join(pkg_folder,"examples/PHonon/*.xml")
     add_tests(prova, qespresso.PhononDocument())
 
+    prova = os.path.join(pkg_folder,"examples/TDDFPT/*/*.dav.xml")
+    add_tests(prova, qespresso.TdDocument())
+
+    prova = os.path.join(pkg_folder,"examples/TDDFPT/*/*.tddfpt.xml")
+    add_tests(prova, qespresso.TdDocument())
+
+    prova = os.path.join(pkg_folder, "examples/TDDFPT/*/*.tddfpt-eels.xml")
+    add_tests(prova, qespresso.TdDocument())
+
+
+    prova = os.path.join(pkg_folder,"examples/TDDFPT/*/*.tddfpt_pp.xml")
+    add_tests(prova, qespresso.SpectrumDocument())
+
     unittest.main()
