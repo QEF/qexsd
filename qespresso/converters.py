@@ -787,7 +787,7 @@ class TdInputConverter(RawInputConverter):
             'single_pole': ('lr_dav[single_pole]',options.set_boolean_flag, None),
             'sort_contr': ('lr_dav[sort_contr',options.set_boolean_flag, None),
             'diag_of_h': ('lr_dav[diag_of_h]', options.set_boolean_flag, None),
-            'close_pre': ('lr_dav[close_pre', options.set_boolean_flag, None),
+            'close_pre': ('lr_dav[close_pre]', options.set_boolean_flag, None),
             'broadening': 'lr_dav[broadening]',
             'print_spectrum': ('lr_dav[print_spectrum]',options.set_boolean_flag, None),
             'start': 'lr_dav[start]',

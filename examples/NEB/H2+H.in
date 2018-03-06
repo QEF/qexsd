@@ -12,7 +12,6 @@ BEGIN_PATH_INPUT
  opt_scheme='broyden'
  path_thr=0.1
  string_method='neb'
- temp_req=0.0
  use_freezing=.false.
  use_masses=.false.
 /
@@ -31,7 +30,7 @@ BEGIN_ENGINE_INPUT
  prefix='H2+H'
  pseudo_dir='/scratch/pdelugas/espresso/pseudo'
  restart_mode='from_scratch'
- title='uffa'
+ title=''
  tprnfor=.false.
  tstress=.false.
  verbosity='low'
@@ -42,6 +41,7 @@ BEGIN_ENGINE_INPUT
  ecutrho=50.0
  ecutwfc=10.0
  force_symmorphic=.false.
+  ibrav = 0
  input_dft='PBE'
  lspinorb=.false.
  nat = 3
@@ -78,24 +78,25 @@ BEGIN_ENGINE_INPUT
  press=0.0
  press_conv_thr=0.5
 /
+
 ATOMIC_SPECIES
  H 1.00794 HUSPBE.RRKJ3
-BEGIN POSITIONS 
-   FIRST_IMAGE 
-      ATOMIC_POSITIONS { bohr }
-         H -4.56670009 0.0 0.0
-         H 0.0 0.0 0.0
-         H 1.55776676 0.0 0.0
-   LAST_IMAGE 
-       ATOMIC_POSITIONS { bohr }
-      H -1.55776676 0.0 0.0
-      H 0.0 0.0 0.0
-      H 4.56670009 0.0 0.0
+BEGIN_POSITIONS 
+FIRST_IMAGE 
+ATOMIC_POSITIONS { bohr }
+H     -4.56670009    0.00000000    0.00000000
+H      0.00000000    0.00000000    0.00000000
+H      1.55776676    0.00000000    0.00000000
+LAST_IMAGE 
+ATOMIC_POSITIONS { bohr }
+H     -1.55776676    0.00000000    0.00000000
+H      0.00000000    0.00000000    0.00000000
+H      4.56670009    0.00000000    0.00000000
 END_POSITIONS 
 K_POINTS gamma
 CELL_PARAMETERS bohr
- 12.0 0.0 0.0
- 0.0 12.0 0.0
- 0.0 0.0 12.0
+ 12.00000000  0.00000000  0.00000000
+  0.00000000 12.00000000  0.00000000
+  0.00000000  0.00000000 12.00000000
 END_ENGINE_INPUT
 END

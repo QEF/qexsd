@@ -1,0 +1,18 @@
+&lr_input
+ eels = .false.
+ eign_file='pwscf.eigen'
+ end=50.0
+ epsil=0.025
+ extrapolation='osc'
+ increment=0.01
+ ipol=1
+ itermax=10000
+ itermax0=500
+ outdir='./out'
+ prefix='Ag'
+ start=0.0
+ sym_op=0
+ td='lanczos'
+ units='eV'
+ verbosity=0
+/

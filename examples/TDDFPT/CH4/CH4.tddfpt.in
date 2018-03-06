@@ -2,19 +2,16 @@
  disk_io='default'
  lr_verbosity=1
  outdir='./out'
- prefix='Ag'
+ prefix='CH4'
  restart = .false.
  restart_step=250
 /
 &lr_control
  charge_response = .false.
  d0psi_rs = .false.
- ipol=1
+ ipol=4
  itermax=500
  lrpa = .false.
  n_ipol=1
  pseudo_hermitian = .false.
- q1=0.0
- q2=0.0
- q3=0.051045
 /

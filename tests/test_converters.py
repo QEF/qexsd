@@ -16,9 +16,12 @@ class InputConversionTestCase(unittest.TestCase):
     longMessage = True
 
 
-def make_test_function(xml_file, ref_in_file):
+def make_test_function(xml_file, ref_in_file, document=None):
     def test(self):
-        xml_conf = qespresso.PwDocument()
+        if document is None:
+            xml_conf = qespresso.PwDocument()
+        else:
+            xml_conf = document
         xml_conf.read(xml_file)
         qe_input = xml_conf.get_qe_input().split('\n')
         with open(ref_in_file, 'r') as qe_input_file:
@@ -36,6 +39,20 @@ def make_test_function(xml_file, ref_in_file):
         self.assertTrue(are_equals, xml_file)
     return test
 
+def add_tests(path, document=None):
+    test_files = glob.glob(path)
+    for xml_filename in test_files:
+        qe_input_filename = '%s.in' % xml_filename[:-4]
+        if not os.path.isfile(qe_input_filename):
+            continue
+        test_func = make_test_function(xml_filename, qe_input_filename, document)
+        test_name = os.path.basename(xml_filename[:-4])
+        klassname = 'Test_{0}'.format(test_name)
+        globals()[klassname] = type(
+            klassname, (InputConversionTestCase,),
+            {'test_gen_{0}'.format(test_name): test_func}
+        )
+    return 1
 
 if __name__ == '__main__':
     import glob
@@ -52,20 +69,14 @@ if __name__ == '__main__':
     sys.path.insert(0, pkg_folder)
     import qespresso
 
-    test_files = glob.glob(os.path.join(pkg_folder, "examples/PW/*.xml "))
-    prova = os.path.join(pkg_folder,"examples/PW/*.xml")
-    test_files = glob.glob(prova)
-    print (glob.glob(prova))
-    print ( test_files)
-    for xml_filename in test_files:
-        qe_input_filename = '%s.in' % xml_filename[:-4]
-        if not os.path.isfile(qe_input_filename):
-            continue
-        test_func = make_test_function(xml_filename, qe_input_filename)
-        test_name = os.path.basename(xml_filename[:-4])
-        klassname = 'Test_{0}'.format(test_name)
-        globals()[klassname] = type(
-            klassname, (InputConversionTestCase,),
-            {'test_gen_{0}'.format(test_name): test_func}
-        )
+
+    prova  = os.path.join(pkg_folder,"examples/PW/*.xml")
+    add_tests(prova, qespresso.PwDocument())
+
+    prova = os.path.join(pkg_folder,"examples/NEB/*.xml")
+    add_tests(prova, qespresso.NebDocument())
+
+    prova = os.path.join(pkg_folder,"examples/PHonon/*.xml")
+    add_tests(prova, qespresso.PhononDocument())
+
     unittest.main()
