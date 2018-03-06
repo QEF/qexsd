@@ -1,0 +1,89 @@
+&CONTROL
+ calculation='scf'
+ dipfield=.false.
+ disk_io='low'
+ dt=20.0
+ etot_conv_thr=1e-05
+ forc_conv_thr=0.001
+ input_xml_schema_file='periodic_dft_176_Si_crystal_0_scf_0.xml'
+ iprint=1
+ max_seconds=1000000
+ nstep=50
+ outdir='./'
+ prefix='periodic_dft_176_Si_crystal_0_scf_0'
+ pseudo_dir='./'
+ restart_mode='from_scratch'
+ title='periodic_dft_176_Si_crystal_0_scf_0'
+ tprnfor=.false.
+ tstress=.false.
+ verbosity='high'
+ wf_collect=.false.
+/
+&SYSTEM
+ degauss=0.01
+ ecutrho=200.0
+ ecutwfc=40.0
+ force_symmorphic=.false.
+  ibrav = 0
+ input_dft='PBE'
+ lspinorb=.false.
+ nat=8
+ nbnd=26
+ no_t_rev=.false.
+ noinv=.false.
+ noncolin=.false.
+ nosym=.true.
+ nosym_evc=.false.
+ nspin=1
+ ntyp=1
+ occupations='smearing'
+ smearing='gaussian'
+ starting_magnetization(1)=0.0
+ tot_charge=0.0
+ tot_magnetization=-1.0
+ use_all_frac=.false.
+/
+&ELECTRONS
+ conv_thr=1e-06
+ diago_cg_maxiter=20
+ diago_full_acc=.false.
+ diago_thr_init=0.0
+ diagonalization='davidson'
+ electron_maxstep=100
+ mixing_beta=0.7
+ mixing_mode='plain'
+ mixing_ndim=8
+ tbeta_smoothing=.false.
+ tq_smoothing=.false.
+ tqr=.false.
+/
+&IONS
+ ion_dynamics='bfgs'
+/
+&CELL
+ cell_dynamics='bfgs'
+ cell_factor=2.0
+ press=0.0
+ press_conv_thr=0.5
+/
+ATOMIC_SPECIES
+ Si 28.0855 si_pbe_v1.uspp.F.UPF
+ATOMIC_POSITIONS crystal
+Si     0.00000000    0.00000000    0.00000000
+Si     0.00000000    0.50000000    0.50000000
+Si     0.50000000    0.50000000    0.00000000
+Si     0.50000000    0.00000000    0.50000000
+Si     0.75000000    0.25000000    0.75000000
+Si     0.25000000    0.25000000    0.25000000
+Si     0.25000000    0.75000000    0.75000000
+Si     0.75000000    0.75000000    0.25000000
+K_POINTS automatic
+ 2 2 2 1 1 1
+CELL_PARAMETERS bohr
+ 10.26310300   0.00000000   0.00000000 
+  0.00000000  10.26310300   0.00000000 
+  0.00000000   0.00000000  10.26310300 
+CONSTRAINTS
+2  1e-05
+'torsional_angle'  7  2  4  5  120.0
+'torsional_angle'  2  5  1  6  -60.0

@@ -50,17 +50,17 @@ Authors: Pietro Delugas
             <element type="positiveInteger" name="n_pol" minOccurs="0" maxOccurs="1" default="1"/>
             <element type="integer" name = "ipol" minOccurs="0" maxOccurs="1" default="1"/>
             <element type="boolean" name="ltammd" minOccurs="0" maxOccurs="1"/>
-            <element type="boolean" name="lrpa" minOccurs="0" maxOccurs="1" default="false"/>
-            <element type="boolean" name="charge_response" minOccurs="0" maxOccurs="1" default="false"/>
+            <element type="boolean" name="lrpa" minOccurs="0" maxOccurs="1" />
+            <element type="boolean" name="charge_response" minOccurs="0" maxOccurs="1" />
             <element type="boolean" name="tqr" minOccurs="0" maxOccurs="1"/>
             <element type="boolean" name="auto_rs" minOccurs="0" maxOccurs="1"/>
             <element type="boolean" name="no_hxc" minOccurs="0" maxOccurs="1"/>
             <element type="boolean" name="lproject" minOccurs="0" maxOccurs="1"/>
             <element type="double" name="scissor" minOccurs="0" maxOccurs="1"/>
             <element type="double" name="ecutfock" minOccurs="0" maxOccurs="1"/>
-            <element type="boolean" name="pseudo_hermitian" minOccurs="0" maxOccurs="1" default="true"/>
-            <element type="boolean" name="d0psi_rs" minOccurs="0" maxOccurs="1" default="false"/>
-            <element type="boolean" name="lshift_d0psi" minOccurs="0" maxOccurs="1" default="true"/>
+            <element type="boolean" name="pseudo_hermitian" minOccurs="0" maxOccurs="1" />
+            <element type="boolean" name="d0psi_rs" minOccurs="0" maxOccurs="1" />
+            <element type="boolean" name="lshift_d0psi" minOccurs="0" maxOccurs="1" />
             <element type="double" name="q1" minOccurs="0" maxOccurs="1"/>
             <element type="double" name="q2" minOccurs="0" maxOccurs="1"/>
             <element type="double" name="q3" minOccurs="0" maxOccurs="1"/>

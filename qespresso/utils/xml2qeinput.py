@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # Copyright (c), 2015-2016, Quantum Espresso Foundation and SISSA (Scuola
 # Internazionale Superiore di Studi Avanzati). All rights reserved.
@@ -31,7 +31,7 @@ def parse_args():
 
 if __name__ == '__main__':
 
-    # Python 2.7+ is required. For old versions 'argparse' is available
+    # Python 2.7+ is required. For old versions 'argparse' is availablealas_recover.xml
     # only with extra package: https://pypi.python.org/pypi/argparse.
     if sys.version_info < (2, 7, 0):
         sys.stderr.write("You need python 2.7 or later to run this program\n")

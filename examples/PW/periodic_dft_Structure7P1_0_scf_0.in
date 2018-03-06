@@ -1,0 +1,83 @@
+&CONTROL
+ calculation='scf'
+ dipfield=.false.
+ disk_io='low'
+ dt=20.0
+ etot_conv_thr=1e-05
+ forc_conv_thr=0.001
+ input_xml_schema_file='periodic_dft_Structure7P1_0_scf_0.xml'
+ iprint=1
+ max_seconds=1000000
+ nstep=50
+ outdir='./'
+ prefix='periodic_dft_Structure7P1_0_scf_0'
+ pseudo_dir='./'
+ restart_mode='from_scratch'
+ title='Default Title'
+ tprnfor=.false.
+ tstress=.false.
+ verbosity='high'
+ wf_collect=.true.
+/
+&SYSTEM
+ ecutrho=180.0
+ ecutwfc=60.0
+ force_symmorphic=.false.
+  ibrav = 0
+ input_dft='PBE'
+ lspinorb=.false.
+ nat=4
+ nbnd=16
+ no_t_rev=.false.
+ noinv=.false.
+ noncolin=.false.
+ nosym=.false.
+ nosym_evc=.false.
+ nspin=1
+ ntyp=3
+ occupations='fixed'
+ starting_magnetization(1)=0.0
+ starting_magnetization(2)=0.0
+ starting_magnetization(3)=0.0
+ tot_charge=0.0
+ tot_magnetization=-1.0
+ use_all_frac=.false.
+/
+&ELECTRONS
+ conv_thr=1e-08
+ diago_cg_maxiter=20
+ diago_full_acc=.false.
+ diago_thr_init=0.0
+ diagonalization='davidson'
+ electron_maxstep=100
+ mixing_beta=0.7
+ mixing_mode='plain'
+ mixing_ndim=8
+ tbeta_smoothing=.false.
+ tq_smoothing=.false.
+ tqr=.false.
+/
+&IONS
+ ion_dynamics='bfgs'
+/
+&CELL
+ cell_dynamics='bfgs'
+ cell_factor=2.0
+ press=0.0
+ press_conv_thr=0.5
+/
+ATOMIC_SPECIES
+ C 12.0107 C.pbe-hgh.UPF
+ O 15.9994 O.pbe-hgh.UPF
+ H 1.00794 H.pbe-hgh.UPF
+ATOMIC_POSITIONS crystal
+C      0.00016300    0.99834400    0.00021200
+O     -0.01168900    1.11968400   -0.01530800
+H     -0.05853100    0.92645600   -0.05696100
+H      0.07005700    0.95551600    0.07205700
+K_POINTS automatic
+ 1 1 1 0 0 0
+CELL_PARAMETERS bohr
+ 18.89723700   0.00000000   0.00000000 
+  0.00000000  18.89723200   0.00000000 
+  0.00000000   0.00000000  18.89725300 

@@ -1,0 +1,121 @@
+<qes:espresso xmlns:qes="http://www.quantum-espresso.org/ns/qes/qes-1.0"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.quantum-espresso.org/ns/qes/qes-1.0 ../qespresso/scheme/qes.xsd">
+<input>
+<control_variables>
+<title>Default Title</title>
+<calculation>scf</calculation>
+<restart_mode>from_scratch</restart_mode>
+<prefix>periodic_dft_Structure7P1_0_scf_0</prefix>
+<pseudo_dir>./</pseudo_dir>
+<outdir>./</outdir>
+<stress>false</stress>
+<forces>false</forces>
+<wf_collect>true</wf_collect>
+<disk_io>low</disk_io>
+<max_seconds>1000000</max_seconds>
+<nstep>50</nstep>
+<etot_conv_thr>1.00000e-05</etot_conv_thr>
+<forc_conv_thr>1.00000e-03</forc_conv_thr>
+<press_conv_thr>5.00000e-01</press_conv_thr>
+<verbosity>high</verbosity>
+<print_every>1</print_every>
+</control_variables>
+<symmetry_flags>
+<nosym>false</nosym>
+<nosym_evc>false</nosym_evc>
+<noinv>false</noinv>
+<no_t_rev>false</no_t_rev>
+<force_symmorphic>false</force_symmorphic>
+<use_all_frac>false</use_all_frac>
+</symmetry_flags>
+<free_positions>
+1 1 1
+1 1 1
+1 1 1
+1 1 1
+</free_positions>
+<atomic_species ntyp="3">
+<species name="C">
+<mass>12.010700</mass>
+<starting_magnetization>0.000000</starting_magnetization>
+<pseudo_file>C.pbe-hgh.UPF</pseudo_file>
+</species>
+<species name="O">
+<mass>15.999400</mass>
+<starting_magnetization>0.000000</starting_magnetization>
+<pseudo_file>O.pbe-hgh.UPF</pseudo_file>
+</species>
+<species name="H">
+<mass>1.007940</mass>
+<starting_magnetization>0.000000</starting_magnetization>
+<pseudo_file>H.pbe-hgh.UPF</pseudo_file>
+</species>
+</atomic_species>
+<atomic_structure nat="4" alat="1.0">
+<crystal_positions>
+<atom name="C" index="1">
+0.000163 0.998344 0.000212
+</atom>
+<atom name="O" index="2">
+-0.011689 1.119684 -0.015308
+</atom>
+<atom name="H" index="3">
+-0.058531 0.926456 -0.056961
+</atom>
+<atom name="H" index="4">
+0.070057 0.955516 0.072057
+</atom>
+</crystal_positions>
+<cell>
+<a1>18.897237 0.000000 0.000000</a1>
+<a2>0.000000 18.897232 0.000000</a2>
+<a3>0.000000 0.000000 18.897253</a3>
+</cell>
+</atomic_structure>
+<dft>
+<functional>PBE</functional>
+</dft>
+<spin>
+<noncolin>false</noncolin>
+<spinorbit>false</spinorbit>
+<lsda>false</lsda>
+</spin>
+<bands>
+<nbnd>16</nbnd>
+<tot_charge>0.000000</tot_charge>
+<tot_magnetization>-1.000000</tot_magnetization>
+<occupations>fixed</occupations>
+</bands>
+<basis>
+<ecutwfc>60.000000</ecutwfc>
+<ecutrho>180.000000</ecutrho>
+<gamma_only>false</gamma_only>
+</basis>
+<electron_control>
+<diagonalization>davidson</diagonalization>
+<mixing_mode>plain</mixing_mode>
+<mixing_beta>0.700000</mixing_beta>
+<conv_thr>1.00000e-08</conv_thr>
+<mixing_ndim>8</mixing_ndim>
+<max_nstep>100</max_nstep>
+<real_space_q>false</real_space_q>
+<diago_thr_init>0.000000</diago_thr_init>
+<diago_full_acc>false</diago_full_acc>
+<diago_cg_maxiter>20</diago_cg_maxiter>
+<tq_smoothing>false</tq_smoothing>
+<tbeta_smoothing>false</tbeta_smoothing>
+</electron_control>
+<k_points_IBZ>
+<monkhorst_pack nk1="1" nk2="1" nk3="1" k1="0" k2="0" k3="0">K-point mesh</monkhorst_pack>
+</k_points_IBZ>
+<ion_control>
+<ion_dynamics>bfgs</ion_dynamics>
+</ion_control>
+<cell_control>
+<cell_dynamics>bfgs</cell_dynamics>
+<pressure>0.000000</pressure>
+<cell_factor>2.000000</cell_factor>
+</cell_control>
+</input>
+</qes:espresso>

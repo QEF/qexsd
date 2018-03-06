@@ -7,11 +7,7 @@
  restart_step=250
 /
 &lr_control
- charge_response = .false.
- d0psi_rs = .false.
  ipol=4
  itermax=500
- lrpa = .false.
  n_ipol=1
- pseudo_hermitian = .false.
 /
