@@ -23,7 +23,7 @@
  ecutrho=250.0
  ecutwfc=30.0
  force_symmorphic=.false.
- ibrav=0
+  ibrav = 0
  input_dft='PZ'
  lspinorb=.true.
  nat=1
@@ -60,16 +60,17 @@
 &CELL
  cell_dynamics='none'
  cell_factor=0.0
+ press=0.0
  press_conv_thr=0.5
  wmass=177802.7
 /
 ATOMIC_SPECIES
  Pt 0.0 Pt.rel-pz-n-rrkjus.UPF
 ATOMIC_POSITIONS bohr
- Pt 0.0 0.0 0.0
+Pt     0.00000000    0.00000000    0.00000000
 K_POINTS automatic
  4 4 4 1 1 1
 CELL_PARAMETERS bohr
- -0.5 0.0 0.5
- 0.0 0.5 0.5
- -0.5 0.5 0.0
+ -0.50000000   0.00000000   0.50000000 
+  0.00000000   0.50000000   0.50000000 
+ -0.50000000   0.50000000   0.00000000 

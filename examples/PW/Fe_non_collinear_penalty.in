@@ -25,7 +25,7 @@
  ecutwfc=25.0
  fixed_magnetization=[0.0, 0.0, 0.0]
  force_symmorphic=.false.
- ibrav=0
+  ibrav = 0
  input_dft='PZ'
  lambda=1.0
  lspinorb=.false.
@@ -63,13 +63,14 @@
 &CELL
  cell_dynamics='none'
  cell_factor=0.0
+ press=0.0
  press_conv_thr=0.5
  wmass=50901.43
 /
 ATOMIC_SPECIES
  Fe 55.847 Fe.pz-nd-rrkjus.UPF
 ATOMIC_POSITIONS bohr
- Fe 0.0 0.0 0.0
+Fe     0.00000000    0.00000000    0.00000000
 K_POINTS
  11
  0.0625 0.0625 0.0625 1.0
@@ -84,6 +85,6 @@ K_POINTS
  0.0625 0.1875 0.3125 6.0
  0.0625 0.1875 0.4375 6.0
 CELL_PARAMETERS bohr
- 0.5 0.5 0.5
- -0.5 0.5 0.5
- -0.5 -0.5 0.5
+  0.50000000   0.50000000   0.50000000 
+ -0.50000000   0.50000000   0.50000000 
+ -0.50000000  -0.50000000   0.50000000 
