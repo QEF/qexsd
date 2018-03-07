@@ -57,7 +57,6 @@ def get_atomic_positions_cell_card(name, **kwargs):
     except KeyError:
         logger.error("Missing required arguments when building ATOMIC_POSITIONS card!")
         return []
-
     # Find atoms
     atomic_positions =  atomic_structure.get('atomic_positions', {})
     wyckoff_positions = atomic_structure.get('wyckoff_positions', {})
@@ -238,7 +237,6 @@ def get_cell_parameters_card(name, **kwargs):
     except KeyError:
         logger.error("Missing required arguments when building ATOMIC_POSITIONS card!")
         return []
-
     # Add cell parameters card
     cells = atomic_structure.get('cell', {})
     if cells:
@@ -280,15 +278,15 @@ def get_qpoints_card(name, **kwargs):
             xq = kwargs['xq_dir']
         except KeyError:
             xq =[0.e0, 0.e0, 0.e0]
-        line = "{:6.4f}  {:8.4f}  {:8.4f}".format(xq[0],xq[1],xq[2])
+        line = "{:6.4f}  {:8.4f}  {:8.4f}".format(xq[0], xq[1], xq[2])
         return [line]
     lines=[]
     if (qplot):
         try:
             nqs = kwargs['nqs']
         except KeyError:
-            raise RuntimeWarning("qplot was set to true in input but no value for nqs was provided assumint nqs = 1")
             nqs = 1
+            raise RuntimeWarning("qplot was set to true in input but no value for nqs was provided assuming nqs = 1")
         lines.append('{:4d}'.format(nqs))
         q_points_list = kwargs['q_points_list']['q_point']
         for q_point in q_points_list:
@@ -297,19 +295,19 @@ def get_qpoints_card(name, **kwargs):
     return lines
 
 def get_climbing_images(name, **kwargs):
-    manualImages = False
+    manual_images = False
     try:
         if kwargs['climbingImage'] == 'manual' or kwargs['climbingImage'] == 'MANUAL':
-            manualImages = True
+            manual_images = True
     except KeyError:
-        manualImages = False
-    if manualImages:
+        manual_images = False
+    if manual_images:
         if isinstance(kwargs['climbingImageIndex'],list):
             line = [int(l) for l in kwargs['climbingImageIndex'] ]
             fmt  = len(line)*' %d, '
             line = fmt%tuple(line)
         else:
-            line =' %d '%int(kwargs['climbingImageIndex'])
+            line = ' %d ' % int(kwargs['climbingImageIndex'])
         return [line]
     return ['']
 

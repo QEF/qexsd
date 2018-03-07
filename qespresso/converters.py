@@ -720,7 +720,9 @@ class NebInputConverter(RawInputConverter):
             'atomic_positions': ('ATOMIC_FORCES', cards.get_atomic_forces_card, None),
             'crystal_positions':('ATOMIC_FORCES', cards.get_atomic_forces_card, None)
         }
-        ENGINE_TEMPLATE_MAP['free_positions'] = ("ATOMIC_POSITIONS", cards.get_neb_images_positions_card, None)
+        ENGINE_TEMPLATE_MAP['free_positions'] = {
+            '_text': ("ATOMIC_POSITIONS", cards.get_neb_images_positions_card, None)
+        }
         # ENGINE_TEMPLATE_MAP['_text'] = ("ATOMIC_POSITIONS", cards.get_neb_images_positions_card,None )
         self.NEB_TEMPLATE_MAP.update({'engine': ENGINE_TEMPLATE_MAP} )
         super(NebInputConverter, self).__init__(
