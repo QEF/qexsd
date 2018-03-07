@@ -69,27 +69,16 @@ if __name__ == '__main__':
     sys.path.insert(0, pkg_folder)
     import qespresso
 
-
-    prova  = os.path.join(pkg_folder,"examples/PW/*.xml")
-    add_tests(prova, qespresso.PwDocument())
-
-    prova = os.path.join(pkg_folder,"examples/NEB/*.xml")
-    add_tests(prova, qespresso.NebDocument())
-
-    prova = os.path.join(pkg_folder,"examples/PHonon/*.xml")
-    add_tests(prova, qespresso.PhononDocument())
-
-    prova = os.path.join(pkg_folder,"examples/TDDFPT/*/*.dav.xml")
-    add_tests(prova, qespresso.TdDocument())
-
-    prova = os.path.join(pkg_folder,"examples/TDDFPT/*/*.tddfpt.xml")
-    add_tests(prova, qespresso.TdDocument())
-
-    prova = os.path.join(pkg_folder, "examples/TDDFPT/*/*.tddfpt-eels.xml")
-    add_tests(prova, qespresso.TdDocument())
-
-
-    prova = os.path.join(pkg_folder,"examples/TDDFPT/*/*.tddfpt_pp.xml")
-    add_tests(prova, qespresso.SpectrumDocument())
+    path_dict = {"examples/PW/*.xml":                   qespresso.PwDocument(),
+                 "examples/NEB/*.xml":                  qespresso.NebDocument(),
+                 "examples/PHonon/*.xml":               qespresso.PhononDocument(),
+                 "examples/TDDFPT/*/*.dav.xml":         qespresso.TdDocument(),
+                 "examples/TDDFPT/*/*.tddfpt.xml":      qespresso.TdDocument(),
+                 "examples/TDDFPT/*/*.tddfpt-eels.xml": qespresso.TdDocument(),
+                 "examples/TDDFPT/*/*.tddfpt_pp.xml":   qespresso.SpectrumDocument()
+    }
+    for path, document in path_dict.items():
+        prova = os.path.join(pkg_folder, path)
+        add_tests(prova,document) 
 
     unittest.main()
