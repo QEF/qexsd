@@ -15,7 +15,7 @@ import logging
 import re
 import os.path
 
-from qespresso.utils.mapping import BiunivocalMap
+from .utils.mapping import BiunivocalMap
 from . import cards, options
 
 logger = logging.getLogger('qespresso')
