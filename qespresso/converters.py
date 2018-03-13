@@ -136,7 +136,7 @@ class RawInputConverter(Container):
     A Fortran's namelist builder.
     """
 
-    target_pattern = re.compile('(\w+)(?:\[((?:\w+)(?:%\w+)*)\]|)')
+    target_pattern = re.compile(r'(\w+)(?:\[((?:\w+)(?:%\w+)*)\]|)')
     """RE pattern to extract Fortran input's namelist/card and name of a parameter"""
 
     def __init__(self, invariant_map, variant_map, input_namelists=None, input_cards=None):
