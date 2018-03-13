@@ -65,7 +65,6 @@ Authors: Antonio Zambon, Paolo Giannozzi, Pietro Delugas
       <element type="qes:integerMatrixType" name="free_positions" minOccurs="0" />
       <element type="qes:matrixType" name="starting_atomic_velocities" minOccurs="0" />
       <element type="qes:electric_fieldType" name="electric_field" minOccurs="0" />
-      <element type="qes:gate_settingsType"  name="gate_settings" minOccurs="0" maxOccurs="1"/>
       <element type="qes:atomic_constraintsType" name="atomic_constraints" minOccurs="0" />
       <element type="qes:spin_constraintsType" name="spin_constraints" minOccurs="0" />
     </sequence>
@@ -588,6 +587,7 @@ Authors: Antonio Zambon, Paolo Giannozzi, Pietro Delugas
     <sequence>
        <element type="qes:electric_potentialType"  name="electric_potential" minOccurs="1" maxOccurs="1"/>
        <element type="boolean" name="dipole_correction" minOccurs="0" maxOccurs="1" default="false"/>
+       <element type="qes:gate_settingsType" name="gate_correction" minOccurs="0" maxOccurs="1" />
        <element type="integer" name="electric_field_direction" minOccurs="0" maxOccurs="1"/>
        <element type="double"  name="potential_max_position" minOccurs="0" maxOccurs="1"/>
        <element type="double"  name="potential_decrease_width" minOccurs="0" maxOccurs="1"/>
@@ -606,13 +606,13 @@ Authors: Antonio Zambon, Paolo Giannozzi, Pietro Delugas
   </simpleType>
   <complexType name="gate_settingsType">
     <sequence>
-      <element name="use_gate" type="boolean" minOccurs="1" maxOccurs="1" />
-      <element name="zgate" type="double" minOccurs="1" maxOccurs="1" default="0.5"/>
-      <element name="relaxz" type="boolean" minOccurs="0" maxOccurs="1" />
-      <element name="block" type="boolean" minOccurs="0" maxOccurs="1" />
-      <element name="block_1" type="double" minOccurs="0" maxOccurs="1" />
-      <element name="block_2" type="double" minOccurs="0" maxOccurs="1" />
-      <element name="block_height" type="double" minOccurs="0" maxOccurs="1" />
+      <element name="use_gate" type="boolean" minOccurs="1" maxOccurs="1"/>
+      <element name="zgate" type="double" minOccurs="0" maxOccurs="1"/>
+      <element name="relaxz" type="boolean" minOccurs="0" maxOccurs="1"/>
+      <element name="block" type="boolean" minOccurs="0" maxOccurs="1"/>
+      <element name="block_1" type="double" minOccurs="0" maxOccurs="1"/>
+      <element name="block_2" type="double" minOccurs="0" maxOccurs="1"/>
+      <element name="block_height" type="double" minOccurs="0" maxOccurs="1"/>
     </sequence>
   </complexType>
   <complexType name="atomic_constraintsType" >
