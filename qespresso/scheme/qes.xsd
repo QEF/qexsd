@@ -737,7 +737,7 @@ Authors: Antonio Zambon, Paolo Giannozzi, Pietro Delugas
   <complexType name="gateInfoType">
     <sequence>
       <element name="pot_prefactor" type="double" minOccurs="1" maxOccurs="1"/>
-      <element name="gate-gate-term" type="double" minOccurs="1" maxOccurs="1"/>
+      <element name="gate_gate_term" type="double" minOccurs="1" maxOccurs="1"/>
       <element name="gatefieldEnergy" type="double" minOccurs="1" maxOccurs="1"/>
     </sequence>
   </complexType>
