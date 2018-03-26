@@ -824,7 +824,8 @@ Authors: Antonio Zambon, Paolo Giannozzi, Pietro Delugas
       <element type="double" name="ewald" minOccurs="0"/>
       <element type="double" name="demet" minOccurs="0"/>
       <element type="double" name="efieldcorr" minOccurs="0"/>
-      <element type="double" name="potentiostat_contr" minOccurs="0"/> 
+      <element type="double" name="potentiostat_contr" minOccurs="0"/>
+      <element type="double" name="gatefield_contr" minOccurs="0"/>
     </sequence>
   </complexType>
   <complexType name="band_structureType">
