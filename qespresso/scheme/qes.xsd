@@ -665,6 +665,7 @@ Authors: Antonio Zambon, Paolo Giannozzi, Pietro Delugas
       <element name="BerryPhase" type="qes:BerryPhaseOutputType" minOccurs="0"/>
       <element name="finiteElectricFieldInfo" type="qes:finiteFieldOutType" minOccurs="0" />
       <element name="dipoleInfo" type="qes:dipoleOutputType" minOccurs="0" />
+      <element name="gateInfo" type="qes:gateInfoType" minOccurs="0" maxOccurs="1"/>
     </sequence>
   </complexType>
   <complexType name="BerryPhaseOutputType">
@@ -731,6 +732,14 @@ Authors: Antonio Zambon, Paolo Giannozzi, Pietro Delugas
         <attribute type="string" name="modulus" use="optional"/>
       </extension>
     </simpleContent>
+  </complexType>
+
+  <complexType name="gateInfoType">
+    <sequence>
+      <element name="pot_prefactor" type="double" minOccurs="1" maxOccurs="1"/>
+      <element name="gate-gate-term" type="double" minOccurs="1" maxOccurs="1"/>
+      <element name="gatefieldEnergy" type="double" minOccurs="1" maxOccurs="1"/>
+    </sequence>
   </complexType>
 
   <complexType name="convergence_infoType">
