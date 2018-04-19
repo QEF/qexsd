@@ -587,7 +587,7 @@ Authors: Antonio Zambon, Paolo Giannozzi, Pietro Delugas
     <sequence>
        <element type="qes:electric_potentialType"  name="electric_potential" minOccurs="1" maxOccurs="1"/>
        <element type="boolean" name="dipole_correction" minOccurs="0" maxOccurs="1" default="false"/>
-       <element type="qes:gate_settingsType" name="gate_correction" minOccurs="0" maxOccurs="1" />
+       <element type="qes:gate_settingsType" name="gate_settings" minOccurs="0" maxOccurs="1" />
        <element type="integer" name="electric_field_direction" minOccurs="0" maxOccurs="1"/>
        <element type="double"  name="potential_max_position" minOccurs="0" maxOccurs="1"/>
        <element type="double"  name="potential_decrease_width" minOccurs="0" maxOccurs="1"/>
@@ -602,6 +602,7 @@ Authors: Antonio Zambon, Paolo Giannozzi, Pietro Delugas
   	<enumeration value="sawtooth_potential"/>
   	<enumeration value="homogenous_field"/>
         <enumeration value="Berry_Phase" />
+       <enumeration value="none"/>
      </restriction>
   </simpleType>
   <complexType name="gate_settingsType">
@@ -737,6 +738,7 @@ Authors: Antonio Zambon, Paolo Giannozzi, Pietro Delugas
   <complexType name="gateInfoType">
     <sequence>
       <element name="pot_prefactor" type="double" minOccurs="1" maxOccurs="1"/>
+      <element name="gate_zpos" type="double" minOccurs="1" maxOccurs="1"/>      
       <element name="gate_gate_term" type="double" minOccurs="1" maxOccurs="1"/>
       <element name="gatefieldEnergy" type="double" minOccurs="1" maxOccurs="1"/>
     </sequence>
