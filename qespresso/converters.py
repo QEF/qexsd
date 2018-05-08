@@ -531,6 +531,15 @@ class PwInputConverter(RawInputConverter):
                 ("SYSTEM[edir]", options.get_system_edir),
                 ("CONTROL[gdir]", options.get_control_gdir)
             ],
+            'gate_settings':{
+                'use_gate': ('CONTROL[gate]', options.set_boolean_flag, None),
+                'zgate': 'SYSTEM[zgate]',
+                'relaxz': ('SYSTEM[relaxz]', options.set_boolean_flag, None),
+                'block': ('SYSTEM[block]', options.set_boolean_flag, None),
+                'block_1': 'SYSTEM[block_1]',
+                'block_2': 'SYSTEM[block_2]',
+                'block_height': 'SYSTEM[block_height]'
+            },
             'dipole_correction': "CONTROL[dipfield]",
             'electric_field_direction': [
                 ("SYSTEM[edir]", options.get_system_edir,),
