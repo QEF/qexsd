@@ -11,12 +11,14 @@ Authors: Pietro Delugas
 	targetNamespace="http://www.quantum-espresso.org/ns/qes/qes_lr-1.0">
 <element name="tddfpt" type="qes_lr:tddfptInType"/>
     <complexType name="tddfptInType">
+	    <!--
         <annotation>
             <documentation>
                 Elements of this type may contain all input information for turbolanczos.x, turboeels.x and
                 turbodavidson.x. The element whatTD selects code to use.
             </documentation>
-        </annotation>
+	</annotation>
+	-->
         <sequence>
             <element name="whatTD" type="qes_lr:turboNameType" minOccurs="1"/>
             <element name="lr_input" type="qes_lr:inputType"/>
@@ -33,11 +35,13 @@ Authors: Pietro Delugas
         </restriction>
     </simpleType>
     <complexType name="inputType">
+	    <!--
         <annotation>
             <documentation>
                 Describes the information contained in the lr_input namelist for the TDDFPT codes
             </documentation>
-        </annotation>
+	</annotation>
+	-->
         <sequence>
             <element name="prefix" type="string" minOccurs="0" maxOccurs="1" default="pwscf"/>
             <element name="restart" type="boolean" minOccurs="0" maxOccurs="1" default="false"/>
