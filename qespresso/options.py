@@ -228,6 +228,7 @@ def get_control_gdir(name, **kwargs):
         return [' gdir={0}'.format(electric_field_direction)]
     else:
         return []
+
 def get_cell_dofree(name, **kwargs):
     """ 
     :param name:
@@ -235,24 +236,36 @@ def get_cell_dofree(name, **kwargs):
     :return:
     """
     try:
-       fix_volume=kwargs['fix_volume']
+        fix_volume = kwargs['fix_volume']
     except KeyError:
-       fix_volume = False
+        fix_volume = False
     try:
-       fix_area = kwargs['fix_area']
+        fix_area = kwargs['fix_area']
     except KeyError:
-       fix_area = False
+        fix_area = False
     try:
-       isotropic = kwargs['isotropic']
+        fix_xy = kwargs['fix_xy']
     except KeyError:
-       isotropic = False
-    cell_dofree = "cell_dofree = 'all'" 
-    if ( (fix_volume and fix_area) or (fix_volume and isotropic ) or ( fix_area and isotropic)) :
-        logger.error("only one of fix_volume fix_area and isotropic can be true")
+        fix_xy = False
+    try:
+        isotropic = kwargs['isotropic']
+    except KeyError:
+        isotropic = False
+
+    vals = [fix_volume, fix_area, fix_xy, isotropic]
+    cell_dofree = "cell_dofree = 'all'"
+    if vals.count(True) > 1:
+        logger.error("only one of fix_volume, fix_area, fix_xy and isotropic "
+                     "can be true")
         return [cell_dofree]
-    if fix_volume: cell_dofree = "cell_dofree = 'shape'"
-    if fix_area:   cell_dofree = "cell_dofree = '2Dshape'"
-    if isotropic:  cell_dofree = "cell_dofree = 'volume' "
+    if fix_volume:
+        cell_dofree = "cell_dofree = 'shape'"
+    if fix_area:
+        cell_dofree = "cell_dofree = '2Dshape'"
+    if fix_xy:
+        cell_dofree = "cell_dofree = '2Dxy'"
+    if isotropic:
+        cell_dofree = "cell_dofree = 'volume' "
     return [cell_dofree]
 
 def neb_set_system_nat(name, **kwargs):
