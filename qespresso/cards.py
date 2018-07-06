@@ -11,6 +11,7 @@ Conversion functions for Quantum Espresso cards.
 """
 
 import logging
+import collections
 
 # from .utils import set_logger
 
@@ -88,6 +89,10 @@ def get_atomic_positions_cell_card(name, **kwargs):
     free_positions = kwargs.get('free_positions', [])
 
     if free_positions:
+        if (isinstance(free_positions, collections.Mapping)):
+        # Cover cases when free_positions are defined with:
+        # <free_positions rank="2" dims="3 2" order="F">
+            free_positions = free_positions['_text']
         # Cover the case when free positions are provided for only one atom
         if type(free_positions[0]) not in (list, tuple):
             free_positions = [free_positions]
@@ -355,6 +360,8 @@ def get_neb_images_positions_card(name, **kwargs):
         logger.error ( "nat provided in first image differs from number of atoms in atomic_positions!!!")
 
     free_positions = kwargs.get('free_positions', [])
+    if isinstance(free_positions, collections.Mapping):
+        free_positions = free_positions.get('_text')
     if free_positions and len(free_positions) != len(atoms):
         logger.error("ATOMIC_POSITIONS: incorrect number of position constraints!")
 
