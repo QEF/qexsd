@@ -85,7 +85,7 @@ Authors: Antonio Zambon, Paolo Giannozzi, Pietro Delugas
   <!-- OUTPUT TYPE -->
   <complexType name="outputType">
     <sequence>
-      <element type="qes:convergence_infoType" name="convergence_info"/>
+      <element type="qes:convergence_infoType" name="convergence_info" minOccurs="0"/>
       <element type="qes:algorithmic_infoType" name="algorithmic_info"/>
       <element type="qes:atomic_speciesType" name="atomic_species"/>
       <element type="qes:atomic_structureType" name="atomic_structure"/>
@@ -448,12 +448,14 @@ Authors: Antonio Zambon, Paolo Giannozzi, Pietro Delugas
       <element type="double" name="conv_thr"/>
       <element type="positiveInteger" name="mixing_ndim"/>
       <element type="positiveInteger" name="max_nstep"/>
-      <element type="boolean" name="real_space_q"/>
+      <element type="boolean" name="real_space_q" minOccurs="0" default="false" />
+      <element type="boolean" name="real_space_beta" minOccurs="0" default ="false"/> 
       <element type="boolean" name="tq_smoothing"/>
       <element type="boolean" name="tbeta_smoothing"/>
       <element type="double" name="diago_thr_init"/>
       <element type="boolean" name="diago_full_acc"/>
       <element type="nonNegativeInteger" name="diago_cg_maxiter" minOccurs="0"/>
+      <element type="nonNegativeInteger" name="diago_ppcg_maxiter" minOccurs="0"/> 
       <element type="positiveInteger" name="diago_david_ndim"    minOccurs="0"/>
     </sequence>
   </complexType>
@@ -468,6 +470,7 @@ Authors: Antonio Zambon, Paolo Giannozzi, Pietro Delugas
     <restriction base="string">
     <enumeration value="davidson"/>
     <enumeration value="cg"/>
+    <enumeration value="ppcg"/>
     </restriction>
   </simpleType>
   <complexType name="k_points_IBZType">
@@ -753,12 +756,14 @@ Authors: Antonio Zambon, Paolo Giannozzi, Pietro Delugas
   </complexType>
   <complexType name="scf_convType">
     <sequence>
+        <element type="boolean" name="convergence_achieved"/>
       <element type="positiveInteger" name="n_scf_steps"/>
       <element type="double" name="scf_error"/>
     </sequence>
   </complexType>
   <complexType name="opt_convType">
     <sequence>
+        <element type="boolean" name="convergence_achieved"/>:
       <element type="positiveInteger" name="n_opt_steps"/>
       <element type="double" name="grad_norm"/>
     </sequence>
@@ -766,6 +771,7 @@ Authors: Antonio Zambon, Paolo Giannozzi, Pietro Delugas
   <complexType name="algorithmic_infoType">
     <sequence>
       <element type="boolean" name="real_space_q"/>
+        <element type ="boolean" name="real_space_beta"/>
       <element type="boolean" name="uspp"/>
       <element type="boolean" name="paw"/>
     </sequence>
