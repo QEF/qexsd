@@ -694,7 +694,7 @@ class NebInputConverter(RawInputConverter):
     """
     NEB_TEMPLATE_MAP = {
         'path' : {
-            'restartMode': "PATH[restart_mode]",
+            'restart_mode': "PATH[restart_mode]",
             'stringMethod': "PATH[string_method]",
             'pathNstep': "PATH[nstep_path]",
             'numOfImages': "PATH[num_of_images]",
@@ -721,6 +721,7 @@ class NebInputConverter(RawInputConverter):
 
     def __init__(self,**kwargs):
         ENGINE_TEMPLATE_MAP = copy.deepcopy(PwInputConverter.PW_TEMPLATE_MAP)
+        ENGINE_TEMPLATE_MAP['control_variables'].pop('restart_mode',None) 
         ENGINE_TEMPLATE_MAP['atomic_structure'] = {
             'nat': ("SYSTEM[nat]", options.neb_set_system_nat,None),
             '_text': [('SYSTEM[ibrav]', options.set_ibrav_to_zero, None),
