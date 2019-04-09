@@ -10,6 +10,7 @@ BEGIN_PATH_INPUT
  nstep_path=50
  opt_scheme='broyden'
  path_thr=0.05
+ restart_mode='from_scratch'
  string_method='neb'
  use_freezing=.false.
  use_masses=.false.
@@ -29,7 +30,6 @@ BEGIN_ENGINE_INPUT
  outdir='/scratch/pdelugas/espresso/tempdir/'
  prefix='Al001+H_pbc'
  pseudo_dir='/scratch/pdelugas/espresso/pseudo/'
- restart_mode='from_scratch'
  title='Al001+H_pbc'
  tprnfor=.true.
  tstress=.false.

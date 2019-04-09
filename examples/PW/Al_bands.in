@@ -33,6 +33,7 @@
  nosym_evc=.false.
  nspin=1
  ntyp=1
+ occupations='fixed'
  starting_magnetization(1)=0.0
  use_all_frac=.false.
 /
@@ -46,6 +47,8 @@
  mixing_beta=0.7
  mixing_mode='plain'
  mixing_ndim=8
+ tbeta_smoothing=.false.
+ tq_smoothing=.false.
  tqr=.false.
 /
 &IONS

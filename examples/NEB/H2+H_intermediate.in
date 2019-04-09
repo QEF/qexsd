@@ -38,8 +38,8 @@ BEGIN_ENGINE_INPUT
 /
 &SYSTEM
  degauss=0.03
- ecutrho=50.0
- ecutwfc=10.0
+ ecutrho=100.0
+ ecutwfc=20.0
  force_symmorphic=.false.
   ibrav = 0
  input_dft='PBE'
@@ -54,7 +54,7 @@ BEGIN_ENGINE_INPUT
  ntyp=1
  occupations='smearing'
  smearing='gaussian'
- starting_magnetization(1)=0.0
+ starting_magnetization(1)=0.5
  tot_charge=0.0
  use_all_frac=.false.
 /
@@ -84,14 +84,39 @@ ATOMIC_SPECIES
 BEGIN_POSITIONS 
 FIRST_IMAGE 
 ATOMIC_POSITIONS { bohr }
-H     -4.56670009    0.00000000    0.00000000
-H      0.00000000    0.00000000    0.00000000
-H      1.55776676    0.00000000    0.00000000
+H     -4.56670009    0.00000000    0.00000000    1   0   0
+H      0.00000000    0.00000000    0.00000000    0   0   0
+H      1.55776676    0.00000000    0.00000000    1   0   0
+INTERMEDIATE_IMAGE 
+ATOMIC_POSITIONS { bohr }
+H     -3.56570000    0.00000000    0.00000000    1   0   0
+H      0.00000000    0.00000000    0.00000000    0   0   0
+H      1.55778352    0.00000000    0.00000000    1   0   0
+INTERMEDIATE_IMAGE 
+ATOMIC_POSITIONS { bohr }
+H     -2.65816028    0.00000000    0.00000000    1   0   0
+H      0.00000000    0.00000000    0.00000000    0   0   0
+H      1.66505000    0.00000000    0.00000000    1   0   0
+INTERMEDIATE_IMAGE 
+ATOMIC_POSITIONS { bohr }
+H     -1.98905000    0.00000000    0.00000000    1   0   0
+H      0.00000000    0.00000000    0.00000000    0   0   0
+H      1.98907469    0.00000000    0.00000000    1   0   0
+INTERMEDIATE_IMAGE 
+ATOMIC_POSITIONS { bohr }
+H     -1.66499397    0.00000000    0.00000000    1   0   0
+H      0.00000000    0.00000000    0.00000000    0   0   0
+H      2.65818420    0.00000000    0.00000000    1   0   0
+INTERMEDIATE_IMAGE 
+ATOMIC_POSITIONS { bohr }
+H     -1.57783469    0.00000000    0.00000000    1   0   0
+H      0.00000000    0.00000000    0.00000000    0   0   0
+H      3.53659200    0.00000000    0.00000000    1   0   0
 LAST_IMAGE 
 ATOMIC_POSITIONS { bohr }
-H     -1.55776676    0.00000000    0.00000000
-H      0.00000000    0.00000000    0.00000000
-H      4.56670009    0.00000000    0.00000000
+H     -1.55776676    0.00000000    0.00000000    1   0   0
+H      0.00000000    0.00000000    0.00000000    0   0   0
+H      4.56670009    0.00000000    0.00000000    1   0   0
 END_POSITIONS 
 K_POINTS gamma
 CELL_PARAMETERS bohr

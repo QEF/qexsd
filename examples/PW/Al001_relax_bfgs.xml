@@ -1,6 +1,6 @@
 <qes:espresso xmlns:qes="http://www.quantum-espresso.org/ns/qes/qes-1.0"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://www.quantum-espresso.org/ns/qes/qes-1.0 ../qespresso/scheme/qes.xsd">
+              xsi:schemaLocation="http://www.quantum-espresso.org/ns/qes/qes-1.0 ../../qespresso/scheme/qes.xsd">
     <input>
     <control_variables>
       <title>
@@ -107,6 +107,8 @@
       <real_space_q>
           false
       </real_space_q>
+        <tq_smoothing>false</tq_smoothing>
+        <tbeta_smoothing>false</tbeta_smoothing>
       <diago_thr_init>
        0.0000000E+00
       </diago_thr_init>
@@ -169,13 +171,14 @@ bfgs
       <cell_dynamics>
 none
       </cell_dynamics>
+        <pressure>0.0</pressure>
       <wmass>
        0.6380110E+04
       </wmass>
       <cell_factor>
        0.0000000E+00
       </cell_factor>
-      <free_cell>
+      <free_cell  rank="2" dims="3 3">
           1 1 1
           1 1 1
           1 1 1
@@ -201,7 +204,7 @@ none
           false
       </use_all_frac>
     </symmetry_flags>
-    <free_positions>
+    <free_positions rank ="2" dims="3 7" order="F">
         1 1 1
         1 1 1
         1 1 1

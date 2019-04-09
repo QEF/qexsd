@@ -11,6 +11,7 @@ BEGIN_PATH_INPUT
  num_of_images=7
  opt_scheme='broyden'
  path_thr=0.1
+ restart_mode='from_scratch'
  string_method='neb'
  use_freezing=.false.
  use_masses=.false.
@@ -29,7 +30,6 @@ BEGIN_ENGINE_INPUT
  outdir='/scratch/pdelugas/espresso/tempdir'
  prefix='H2+H'
  pseudo_dir='/scratch/pdelugas/espresso/pseudo'
- restart_mode='from_scratch'
  title=''
  tprnfor=.false.
  tstress=.false.
