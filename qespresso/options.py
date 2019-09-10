@@ -52,6 +52,8 @@ def get_specie_related_values(name, **kwargs):
             continue
 
         specie_index = 1
+        if isinstance(species, dict):
+            species = [species]
         for specie in species:
             if specie['name'] == tag_specie:
                 break
