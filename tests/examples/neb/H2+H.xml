@@ -1,6 +1,6 @@
 <neb:nebRun xmlns:neb="http://www.quantum-espresso.org/ns/neb"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://www.quantum-espresso.org/ns/neb ../../../qexsd/schemas/qes_neb.xsd" >
+            xsi:schemaLocation="http://www.quantum-espresso.org/ns/neb ../../../qeschema/schemas/qes_neb.xsd" >
     <input>
         <path>
             <stringMethod>neb</stringMethod>
@@ -153,8 +153,9 @@
                     0.000000000000000E+00 0.00000000000000E+00 0.0000000000000E+00
                 </k_point>
             </k_points_IBZ>
-            <ion_control></ion_control>
-            <cell_control></cell_control>
+	    <ion_control>
+		    <ion_dynamics>bfgs</ion_dynamics>
+	    </ion_control>
             <symmetry_flags>
                 <nosym>false</nosym>
                 <nosym_evc>false</nosym_evc>
